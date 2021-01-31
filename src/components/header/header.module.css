@@ -1,0 +1,33 @@
+.header {
+  width: 100%;
+  text-align: center;
+  padding: 30px 10px;
+  background-color: #385461;
+  position: relative;
+}
+
+.logo {
+  display: inline-block;
+  width: 80px;
+  margin-bottom: 20px;
+}
+
+.title {
+  margin: 0;
+  font-size: 36px;
+  line-height: 1;
+  color: #fff;
+}
+
+.logout {
+  position: absolute;
+  right: 35px;
+  top: 15px;
+  padding: 12px;
+  border-radius: 30%;
+  background-color: #000;
+  color: #fff;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+}

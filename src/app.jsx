@@ -1,6 +1,5 @@
 import React from "react";
-import "./app.css";
-import "./app.module.css";
+import styles from "./app.module.css";
 import Home from "./components/home/home";
 import Login from "./components/login/login";
 

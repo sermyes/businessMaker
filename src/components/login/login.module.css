@@ -1,0 +1,141 @@
+.section {
+  width: 100%;
+}
+.container {
+  width: 100%;
+  padding: 30px;
+  background-color: #fff;
+}
+.title {
+  width: 100%;
+  text-align: center;
+  font-size: 32px;
+  line-height: 42px;
+  margin-bottom: 45px;
+}
+
+.formContainer {
+  border: none;
+}
+.formGroup {
+  margin-bottom: 15px;
+}
+.label {
+  color: #0c1721;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 24px;
+  display: block;
+}
+.input {
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid transparent;
+  font-size: 18px;
+  line-height: 1;
+  background-color: #e3f6ff;
+}
+.input:hover {
+  border: 1px solid #5f90a7;
+}
+.input:focus {
+  outline: 1px solid #5f90a7;
+  outline-offset: -1px;
+  outline-style: solid;
+}
+
+.login {
+  border-radius: 100px;
+  font-size: 1em;
+  font-weight: 500;
+  line-height: 1;
+  text-align: center;
+  border: 2px solid #5f90a7;
+  background-color: #5f90a7;
+  color: #fff;
+  padding: 9px 18px;
+  cursor: pointer;
+  margin: 20px 0 40px;
+}
+.dividerContainer {
+  width: 100%;
+  position: relative;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.dividerContainer:before,
+.dividerContainer:after {
+  position: absolute;
+  top: 50%;
+  width: 20%;
+  height: 1px;
+  border-top: 1px solid #0c1721;
+  opacity: 0.5;
+  content: "";
+  z-index: 0;
+}
+.dividerContainer:before {
+  left: 25%;
+}
+.dividerContainer:after {
+  right: 25%;
+}
+.divider {
+  display: inline-block;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  background-color: #5f90a7;
+  border: 1px solid #5f90a7;
+  border-radius: 50%;
+  color: white;
+  opacity: 0.8;
+}
+.dividerText {
+  display: block;
+  font-size: 24px;
+  text-align: center;
+  color: #0c1721;
+  opacity: 0.5;
+  margin-bottom: 20px;
+}
+.remoteList {
+  display: block;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.remoteItem {
+  display: inline-block;
+  border: 1px solid #cacccd;
+  width: 40px;
+  height: 40px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  transition: background-color 0.4s;
+}
+.remoteItem:hover {
+  background-color: #cff0ff;
+}
+.remoteItem:not(:first-child) {
+  margin-left: 10px;
+}
+.google,
+.github,
+.facebook {
+  display: block;
+  color: black;
+}
+.icon {
+  font-size: 18px;
+  margin-top: 10px;
+}
+.joinContainer {
+  width: 100%;
+  text-align: center;
+}
+.join {
+  display: inline-block;
+  color: #0c1721;
+}
