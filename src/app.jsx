@@ -15,10 +15,10 @@ function App({ authService }) {
             <Signin authService={authService} />
           </Route>
           <Route exact path="/signup">
-            <Signup />
+            <Signup authService={authService} />
           </Route>
           <Route exact path="/forgot">
-            <Forgot />
+            <Forgot authService={authService} />
           </Route>
           <Route exact path="/main">
             <Main authService={authService} />

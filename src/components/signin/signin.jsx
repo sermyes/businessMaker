@@ -1,17 +1,18 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import Footer from "../footer/footer";
 import Header from "../header/header";
 import styles from "./signin.module.css";
 import { FcGoogle as GoogleIcon } from "react-icons/fc";
 import { FaFacebookF as FacebookIcon } from "react-icons/fa";
 import { FiGithub as GithubIcon } from "react-icons/fi";
-import { useRef } from "react";
 import { useHistory } from "react-router-dom";
-import { useEffect } from "react";
 
 const Signin = ({ authService }) => {
   const emailRef = useRef();
   const passwordRef = useRef();
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const history = useHistory();
 
   const goToMain = (userId) => {
@@ -20,10 +21,12 @@ const Signin = ({ authService }) => {
       state: { id: userId },
     });
   };
+
   const goToSignup = (e) => {
     e.preventDefault();
     history.push("/signup");
   };
+
   const goToForgot = (e) => {
     e.preventDefault();
     history.push("/forgot");
@@ -33,11 +36,26 @@ const Signin = ({ authService }) => {
     e.preventDefault();
     authService
       .remoteSignin(e.currentTarget.id)
-      .then((data) => goToMain(data.user.uid));
+      .then((data) => goToMain(data.user.uid))
+      .catch((e) => setError(e.message));
   };
 
   const onSignin = (e) => {
     e.preventDefault();
+    if (loading) {
+      return;
+    }
+
+    setLoading(true);
+    authService
+      .signin(emailRef.current.value, passwordRef.current.value)
+      .then((data) => {
+        goToMain(data.user.uid);
+      })
+      .catch((e) => {
+        setLoading(false);
+        setError(e.message);
+      });
   };
 
   useEffect(() => {
@@ -51,6 +69,7 @@ const Signin = ({ authService }) => {
       <Header></Header>
       <section className={styles.container}>
         <h1 className={styles.title}>Welcome Back!</h1>
+        {error && <p className={styles.alert}>{error}</p>}
         <form action="">
           <fieldset className={styles.formContainer}>
             <div className={styles.formGroup}>

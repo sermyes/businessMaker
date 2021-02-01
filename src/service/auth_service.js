@@ -24,6 +24,10 @@ class AuthService{
         firebaseAuth.signOut();
     }
 
+    resetPassword(email){
+        return firebaseAuth.sendPasswordResetEmail(email);
+    }
+
     getProvider(providerName){
         switch(providerName){
             case 'Google' :

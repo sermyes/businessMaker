@@ -1,18 +1,41 @@
-import React from "react";
-import { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Footer from "../footer/footer";
 import Header from "../header/header";
 import styles from "./signup.module.css";
 
-const Signup = (props) => {
+const Signup = ({ authService }) => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
   const history = useHistory();
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const goToSignin = (e) => {
     e.preventDefault();
     history.push("/");
+  };
+
+  const onSignup = (e) => {
+    e.preventDefault();
+
+    if (loading) {
+      return;
+    }
+
+    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+      return setError("Passwords do not match.");
+    }
+
+    setError("");
+    setLoading(true);
+    authService
+      .signup(emailRef.current.value, passwordRef.current.value)
+      .catch((e) => {
+        setLoading(false);
+        setError(e.message);
+      });
   };
 
   return (
@@ -20,6 +43,7 @@ const Signup = (props) => {
       <Header />
       <section className={styles.container}>
         <h2 className={styles.title}>Create a new account</h2>
+        {error && <p className={styles.alert}>{error}</p>}
         <form action="">
           <fieldset className={styles.formContainer}>
             <div className={styles.formGroup}>
@@ -62,7 +86,11 @@ const Signup = (props) => {
               />
             </div>
             <div className={styles.formBtnGroup}>
-              <button type="submit" className={styles.signup}>
+              <button
+                type="submit"
+                className={styles.signup}
+                onClick={onSignup}
+              >
                 Sign up
               </button>
             </div>

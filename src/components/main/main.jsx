@@ -10,7 +10,7 @@ const Main = ({ authService }) => {
   const onSignout = () => {
     authService.signout();
   };
-
+  console.log(history);
   useEffect(() => {
     authService.onAuthChange((user) => {
       if (!user) {
