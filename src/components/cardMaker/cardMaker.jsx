@@ -4,7 +4,7 @@ import CardEditor from "../cardEditor/cardEditor";
 import CardPreview from "../cardPreview/cardPreview";
 import styles from "./cardMaker.module.css";
 
-const CardMaker = (props) => {
+const CardMaker = ({ FileInput }) => {
   const history = useHistory();
   const [cards, setCards] = useState({
     1: {
@@ -66,6 +66,7 @@ const CardMaker = (props) => {
   return (
     <section className={styles.container}>
       <CardEditor
+        FileInput={FileInput}
         addOrUpdateCard={addOrUpdateCard}
         cards={cards}
         deleteCard={deleteCard}

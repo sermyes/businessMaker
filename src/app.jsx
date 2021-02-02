@@ -6,7 +6,7 @@ import Signin from "./components/signin/signin";
 import Signup from "./components/signup/signup";
 import Forgot from "./components/forgot/forgot";
 
-function App({ authService }) {
+function App({ authService, FileInput }) {
   return (
     <div className={styles.app}>
       <BrowserRouter>
@@ -21,7 +21,7 @@ function App({ authService }) {
             <Forgot authService={authService} />
           </Route>
           <Route exact path="/main">
-            <Main authService={authService} />
+            <Main authService={authService} FileInput={FileInput} />
           </Route>
         </Switch>
       </BrowserRouter>

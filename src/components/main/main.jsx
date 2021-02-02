@@ -7,7 +7,7 @@ import MainContent from "../mainContent/mainContent";
 import Scheduler from "../scheduler/scheduler";
 import styles from "./main.module.css";
 
-const Main = ({ authService }) => {
+const Main = ({ authService, FileInput }) => {
   const history = useHistory();
 
   const onSignout = () => {
@@ -33,7 +33,7 @@ const Main = ({ authService }) => {
             <MainContent />
           </Route>
           <Route exact path="/main/cardMaker">
-            <CardMaker />
+            <CardMaker FileInput={FileInput} />
           </Route>
           <Route exact path="/main/scheduler">
             <Scheduler />

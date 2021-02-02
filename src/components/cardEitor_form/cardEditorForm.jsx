@@ -1,9 +1,8 @@
 import React, { useRef } from "react";
 import CardButton from "../cardButton/cardButton";
-import ImageFileInput from "../imageFileInput/imageFileInput";
 import styles from "./cardEditorForm.module.css";
 
-const CardEditorForm = ({ card, updateCard, deleteCard }) => {
+const CardEditorForm = ({ FileInput, card, updateCard, deleteCard }) => {
   const companyRef = useRef();
   const jobRef = useRef();
   const nameRef = useRef();
@@ -22,6 +21,14 @@ const CardEditorForm = ({ card, updateCard, deleteCard }) => {
     fileName,
     fileURL,
   } = card;
+
+  const onFileChange = (file) => {
+    updateCard({
+      ...card,
+      fileName: file.name,
+      fileURL: file.url,
+    });
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -96,7 +103,7 @@ const CardEditorForm = ({ card, updateCard, deleteCard }) => {
         onChange={onChange}
       />
       <div className={styles.fileInput}>
-        <ImageFileInput />
+        <FileInput name={name} onFileChange={onFileChange} />
       </div>
       <CardButton name="Delete" onClick={onSubmit} />
     </form>
