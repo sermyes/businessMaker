@@ -1,0 +1,15 @@
+.card {
+  margin: 0 auto 20px;
+  width: 400px;
+  height: 230px;
+  display: flex;
+  align-items: center;
+  border-radius: 15px;
+  padding: 5px;
+  background-color: beige;
+  box-shadow: 3px 3px 2px -2px;
+}
+.logo {
+  width: 50px;
+  flex-basis: 20%;
+}

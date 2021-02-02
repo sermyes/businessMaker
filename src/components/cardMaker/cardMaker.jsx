@@ -10,34 +10,34 @@ const CardMaker = (props) => {
     {
       id: "1",
       company: "lg",
+      job: "Software Engineering",
       name: "ellie",
       email: "abc@naver.com",
       phone: "010-123-1234",
-      job: "Software Engineering",
       design: "basic",
-      fileName: "ellie",
+      fileName: "front",
       fileURL: "",
     },
     {
       id: "2",
       company: "lg",
+      job: "Software Engineering",
       name: "ellie",
       email: "abc@naver.com",
       phone: "010-123-1234",
-      job: "Software Engineering",
       design: "basic",
-      fileName: "ellie",
+      fileName: "front",
       fileURL: "",
     },
     {
       id: "3",
       company: "lg",
+      job: "Software Engineering",
       name: "ellie",
       email: "abc@naver.com",
       phone: "010-123-1234",
-      job: "Software Engineering",
       design: "basic",
-      fileName: "ellie",
+      fileName: "front",
       fileURL: "",
     },
   ]);
@@ -47,9 +47,14 @@ const CardMaker = (props) => {
     history.push("/main");
   };
 
+  const addCard = (card) => {
+    const updated = [...cards, card];
+    setCards(updated);
+  };
+
   return (
     <section className={styles.container}>
-      <CardEditor cards={cards} />
+      <CardEditor addCard={addCard} cards={cards} />
       <CardPreview cards={cards} />
     </section>
   );
