@@ -6,8 +6,8 @@ import styles from "./cardMaker.module.css";
 
 const CardMaker = (props) => {
   const history = useHistory();
-  const [cards, setCards] = useState([
-    {
+  const [cards, setCards] = useState({
+    1: {
       id: "1",
       company: "lg",
       job: "Software Engineering",
@@ -18,7 +18,7 @@ const CardMaker = (props) => {
       fileName: "front",
       fileURL: "",
     },
-    {
+    2: {
       id: "2",
       company: "lg",
       job: "Software Engineering",
@@ -29,7 +29,7 @@ const CardMaker = (props) => {
       fileName: "front",
       fileURL: "",
     },
-    {
+    3: {
       id: "3",
       company: "lg",
       job: "Software Engineering",
@@ -40,21 +40,36 @@ const CardMaker = (props) => {
       fileName: "front",
       fileURL: "",
     },
-  ]);
+  });
 
   const goToMain = (e) => {
     e.preventDefault();
     history.push("/main");
   };
 
-  const addCard = (card) => {
-    const updated = [...cards, card];
-    setCards(updated);
+  const addOrUpdateCard = (card) => {
+    setCards((cards) => {
+      const updated = { ...cards };
+      updated[card.id] = card;
+      return updated;
+    });
+  };
+
+  const deleteCard = (card) => {
+    setCards((cards) => {
+      const updated = { ...cards };
+      delete updated[card.id];
+      return updated;
+    });
   };
 
   return (
     <section className={styles.container}>
-      <CardEditor addCard={addCard} cards={cards} />
+      <CardEditor
+        addOrUpdateCard={addOrUpdateCard}
+        cards={cards}
+        deleteCard={deleteCard}
+      />
       <CardPreview cards={cards} />
     </section>
   );
