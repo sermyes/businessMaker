@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, BrowserRouter, Route, Switch } from "react-router-dom";
+import CardMaker from "../cardMaker/cardMaker";
 import Footer from "../footer/footer";
 import Header from "../header/header";
+import MainContent from "../mainContent/mainContent";
+import Scheduler from "../scheduler/scheduler";
 import styles from "./main.module.css";
 
 const Main = ({ authService }) => {
@@ -10,7 +13,9 @@ const Main = ({ authService }) => {
   const onSignout = () => {
     authService.signout();
   };
-  console.log(history);
+
+  // history.location.uid
+
   useEffect(() => {
     authService.onAuthChange((user) => {
       if (!user) {
@@ -20,11 +25,21 @@ const Main = ({ authService }) => {
   });
 
   return (
-    <section>
+    <section className={styles.container}>
       <Header onSignout={onSignout} />
-      <section className={styles.container}>
-        <div></div>
-      </section>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/main">
+            <MainContent />
+          </Route>
+          <Route exact path="/main/cardMaker">
+            <CardMaker />
+          </Route>
+          <Route exact path="/main/scheduler">
+            <Scheduler />
+          </Route>
+        </Switch>
+      </BrowserRouter>
       <Footer />
     </section>
   );
