@@ -17,7 +17,7 @@ const Signin = ({ authService }) => {
 
   const goToMain = (userId) => {
     history.push({
-      pathname: "/main",
+      pathname: "/main/cardMaker",
       state: { id: userId },
     });
   };

@@ -4,6 +4,7 @@
   flex-basis: 50%;
   border-right: 1px solid lightgrey;
   padding: 20px;
+  overflow-y: auto;
 }
 .title {
   width: 100%;

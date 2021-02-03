@@ -1,51 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import CardEditor from "../cardEditor/cardEditor";
 import CardPreview from "../cardPreview/cardPreview";
 import styles from "./cardMaker.module.css";
 
-const CardMaker = ({ FileInput }) => {
+const CardMaker = ({ FileInput, authService, cardRespository }) => {
   const history = useHistory();
-  const [cards, setCards] = useState({
-    1: {
-      id: "1",
-      company: "lg",
-      job: "Software Engineering",
-      name: "ellie",
-      email: "abc@naver.com",
-      phone: "010-123-1234",
-      design: "basic",
-      fileName: "front",
-      fileURL: "",
-    },
-    2: {
-      id: "2",
-      company: "lg",
-      job: "Software Engineering",
-      name: "ellie",
-      email: "abc@naver.com",
-      phone: "010-123-1234",
-      design: "basic",
-      fileName: "front",
-      fileURL: "",
-    },
-    3: {
-      id: "3",
-      company: "lg",
-      job: "Software Engineering",
-      name: "ellie",
-      email: "abc@naver.com",
-      phone: "010-123-1234",
-      design: "basic",
-      fileName: "front",
-      fileURL: "",
-    },
-  });
-
-  const goToMain = (e) => {
-    e.preventDefault();
-    history.push("/main");
-  };
+  const [cards, setCards] = useState({});
+  const [userId, setUserId] = useState(
+    history.location.state && history.location.state.id
+  );
 
   const addOrUpdateCard = (card) => {
     setCards((cards) => {
@@ -53,6 +17,8 @@ const CardMaker = ({ FileInput }) => {
       updated[card.id] = card;
       return updated;
     });
+
+    cardRespository.saveCard(userId, card);
   };
 
   const deleteCard = (card) => {
@@ -61,7 +27,31 @@ const CardMaker = ({ FileInput }) => {
       delete updated[card.id];
       return updated;
     });
+
+    cardRespository.removeCard(userId, card);
   };
+
+  useEffect(() => {
+    if (!userId) {
+      return;
+    }
+
+    const stopSync = cardRespository.syncCard(userId, (cards) => {
+      setCards(cards);
+    });
+
+    return () => stopSync();
+  }, [userId]);
+
+  useEffect(() => {
+    authService.onAuthChange((user) => {
+      if (!user) {
+        history.push("/");
+      } else {
+        setUserId(user.uid);
+      }
+    });
+  });
 
   return (
     <section className={styles.container}>
