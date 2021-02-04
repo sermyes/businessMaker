@@ -1,18 +1,18 @@
-import React from "react";
+import React, { memo } from "react";
 import { useHistory } from "react-router-dom";
 import styles from "./header.module.css";
 
-const NavMenu = () => {
+const NavMenu = memo(() => {
   const history = useHistory();
 
   const goToCardMaker = (e) => {
     e.preventDefault();
-    history.push("/main/cardMaker");
+    history.push("/cardMaker");
   };
 
   const goToNoteMaker = (e) => {
     e.preventDefault();
-    history.push("/main/noteMaker");
+    history.push("/noteMaker");
   };
 
   return (
@@ -31,9 +31,9 @@ const NavMenu = () => {
       </ul>
     </nav>
   );
-};
+});
 
-const Header = ({ onSignout }) => {
+const Header = memo(({ onSignout }) => {
   return (
     <header className={styles.header}>
       {!onSignout && (
@@ -64,6 +64,6 @@ const Header = ({ onSignout }) => {
       )}
     </header>
   );
-};
+});
 
 export default Header;

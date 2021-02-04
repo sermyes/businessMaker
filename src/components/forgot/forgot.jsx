@@ -24,6 +24,7 @@ const Forgot = ({ authService }) => {
     authService
       .resetPassword(emailRef.current.value)
       .then(() => {
+        setLoading(false);
         window.alert("sent by your e-mail");
         history.push("/");
       })

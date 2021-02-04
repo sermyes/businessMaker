@@ -1,15 +1,164 @@
-.card {
-  margin: 0 auto 20px;
-  width: 340px;
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Yusei+Magic&display=swap");
+
+.container {
+  display: block;
+  width: 380px;
   height: 190px;
+  margin: 0 auto 20px;
+  perspective: 1000px;
+}
+.card {
+  position: relative;
+  width: 340px;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 2s;
+}
+.cardFront,
+.cardBack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
   display: flex;
-  align-items: center;
   border-radius: 15px;
   padding: 5px;
-  background-color: beige;
+  background-color: #fff;
   box-shadow: 3px 3px 2px -2px;
+  backface-visibility: hidden;
+}
+.cardFront {
+  font-family: "Yusei Magic", sans-serif;
+  letter-spacing: 0.1em;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  font-weight: bold;
+}
+.cardBack {
+  font-family: "Noto Sans KR", sans-serif;
+  transform: rotateY(180deg);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+.info,
+.logoContainer {
+  display: flex;
+  flex-direction: column;
+}
+.info {
+  padding: 40px 20px 0 10px;
+  flex-basis: 70%;
+  position: relative;
+}
+.logoContainer {
+  flex-basis: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .logo {
   width: 50px;
-  flex-basis: 20%;
+}
+.info:after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 60%;
+  width: 1px;
+  border-radius: 10px;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.logoContainer {
+}
+.name {
+  font-size: 24px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+.job {
+  display: inline-block;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+.phoneContainer,
+.emailContainer {
+  position: relative;
+}
+.ico_phone,
+.ico_email {
+  position: absolute;
+  font-size: 14px;
+  top: 7px;
+  left: 2px;
+}
+.email,
+.phone {
+  display: inline-block;
+  letter-spacing: 0.2px;
+  padding-left: 20px;
+  font-weight: 400;
+  margin-left: 8px;
+  font-size: 12px;
+}
+
+.button {
+  position: absolute;
+  right: 0;
+  bottom: 5px;
+  outline: none;
+  border: none;
+  background: transparent;
+}
+.ico_flip {
+  cursor: pointer;
+  font-size: 16px;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+.ico_flip:hover {
+  opacity: 1;
+}
+
+.cardFront.dark {
+  background-color: #000;
+  color: #fff;
+}
+.cardFront.light,
+.cardBack.light {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 240, 219, 0.5);
+  color: #000;
+}
+.cardFront.pattern_blue {
+  background: url("https://res.cloudinary.com/sermyes/image/upload/v1612458550/business-maker/basic/pattern_blue_jtmtbq.png");
+  color: #000;
+}
+.cardBack.pattern_blue {
+  background: rgba(247, 255, 255);
+}
+.cardFront.pattern_blue .company {
+  background-color: rgba(247, 255, 255);
+  padding: 5px 10px 8px 14px;
+  border: 2px solid rgba(114, 150, 183);
+  line-height: 24px;
+}
+.cardFront.pattern_yellow {
+  background: url("https://res.cloudinary.com/sermyes/image/upload/v1612456769/business-maker/basic/pattern_yellow_crpzbm.png");
+  color: #000;
+}
+.cardBack.pattern_yellow {
+  background: rgba(225, 205, 146);
+}
+.cardFront.pattern_yellow .company {
+  background-color: rgba(225, 205, 146);
+  padding: 5px 10px 8px 14px;
+  border: 2px solid rgba(208, 165, 87);
+  line-height: 24px;
+}
+.cardFront.vintage {
+  background: url("https://res.cloudinary.com/sermyes/image/upload/v1612456769/business-maker/basic/vintage_black_wixun5.png");
+  color: #fff;
+}
+.cardBack.vintage {
+  background: url("https://res.cloudinary.com/sermyes/image/upload/v1612456769/business-maker/basic/vintage_white_nfn7il.png");
 }

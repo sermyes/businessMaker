@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useCallback } from "react";
 import Footer from "../footer/footer";
 import Header from "../header/header";
 import styles from "./signin.module.css";
@@ -15,12 +15,15 @@ const Signin = ({ authService }) => {
 
   const history = useHistory();
 
-  const goToMain = (userId) => {
-    history.push({
-      pathname: "/main/cardMaker",
-      state: { id: userId },
-    });
-  };
+  const goToMain = useCallback(
+    (userId) => {
+      history.push({
+        pathname: "/cardMaker",
+        state: { id: userId },
+      });
+    },
+    [history]
+  );
 
   const goToSignup = (e) => {
     e.preventDefault();
@@ -34,9 +37,17 @@ const Signin = ({ authService }) => {
 
   const onRemoteSignin = (e) => {
     e.preventDefault();
+    if (loading) {
+      return;
+    }
+
+    setLoading(true);
     authService
       .remoteSignin(e.currentTarget.id)
-      .then((data) => goToMain(data.user.uid))
+      .then((data) => {
+        setLoading(false);
+        goToMain(data.user.uid);
+      })
       .catch((e) => setError(e.message));
   };
 
@@ -50,6 +61,7 @@ const Signin = ({ authService }) => {
     authService
       .signin(emailRef.current.value, passwordRef.current.value)
       .then((data) => {
+        setLoading(false);
         goToMain(data.user.uid);
       })
       .catch((e) => {
@@ -62,7 +74,11 @@ const Signin = ({ authService }) => {
     authService.onAuthChange((user) => {
       user && goToMain(user.uid);
     });
-  });
+
+    return () => {
+      setLoading(false);
+    };
+  }, [authService, goToMain]);
 
   return (
     <section className={styles.section}>

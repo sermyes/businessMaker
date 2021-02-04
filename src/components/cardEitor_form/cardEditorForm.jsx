@@ -8,19 +8,9 @@ const CardEditorForm = ({ FileInput, card, updateCard, deleteCard }) => {
   const nameRef = useRef();
   const emailRef = useRef();
   const phoneRef = useRef();
-  const designRef = useRef();
+  const themeRef = useRef();
 
-  const {
-    id,
-    company,
-    job,
-    name,
-    email,
-    phone,
-    design,
-    fileName,
-    fileURL,
-  } = card;
+  const { company, job, name, email, phone, theme } = card;
 
   const onFileChange = (file) => {
     updateCard({
@@ -32,7 +22,6 @@ const CardEditorForm = ({ FileInput, card, updateCard, deleteCard }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(card);
     deleteCard(card);
   };
 
@@ -56,6 +45,7 @@ const CardEditorForm = ({ FileInput, card, updateCard, deleteCard }) => {
         type="text"
         name="name"
         defaultValue={name ? name : ""}
+        placeholder="name"
         onChange={onChange}
       />
       <input
@@ -64,19 +54,22 @@ const CardEditorForm = ({ FileInput, card, updateCard, deleteCard }) => {
         type="text"
         name="company"
         defaultValue={company ? company : ""}
+        placeholder="company"
         onChange={onChange}
       />
       <select
-        ref={designRef}
+        ref={themeRef}
         className={styles.select}
-        name="design"
-        defaultValue={design ? design : "light"}
+        name="theme"
+        value={theme}
+        placeholder="theme"
         onChange={onChange}
       >
         <option value="light">Light</option>
-        <option value="black">Black</option>
-        <option value="gold">Gold</option>
-        <option value="silver">Silver</option>
+        <option value="dark">Dark</option>
+        <option value="vintage">Vintage</option>
+        <option value="pattern_blue">Pattern_blue</option>
+        <option value="pattern_yellow">Pattern_yellow</option>
       </select>
       <input
         ref={jobRef}
@@ -84,6 +77,7 @@ const CardEditorForm = ({ FileInput, card, updateCard, deleteCard }) => {
         type="text"
         name="job"
         defaultValue={job ? job : ""}
+        placeholder="job"
         onChange={onChange}
       />
       <input
@@ -92,6 +86,7 @@ const CardEditorForm = ({ FileInput, card, updateCard, deleteCard }) => {
         type="text"
         name="email"
         defaultValue={email ? email : ""}
+        placeholder="email"
         onChange={onChange}
       />
       <input
@@ -100,6 +95,7 @@ const CardEditorForm = ({ FileInput, card, updateCard, deleteCard }) => {
         type="text"
         name="phone"
         defaultValue={phone ? phone : ""}
+        placeholder="phone"
         onChange={onChange}
       />
       <div className={styles.fileInput}>

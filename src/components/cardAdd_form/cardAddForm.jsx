@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import { useRef } from "react";
 import CardButton from "../cardButton/cardButton";
 import styles from "./cardAddForm.module.css";
 import { v4 as uuidv4 } from "uuid";
 
-const CardAddForm = ({ FileInput, addCard }) => {
+const CardAddForm = memo(({ FileInput, addCard }) => {
   const companyRef = useRef();
   const jobRef = useRef();
   const nameRef = useRef();
   const emailRef = useRef();
   const phoneRef = useRef();
-  const designRef = useRef();
+  const themeRef = useRef();
   const formRef = useRef();
   const [file, setFile] = useState({ fileName: null, fileURL: null });
 
@@ -30,7 +30,7 @@ const CardAddForm = ({ FileInput, addCard }) => {
       job: jobRef.current.value || "",
       email: emailRef.current.value || "",
       phone: phoneRef.current.value || "",
-      design: designRef.current.value,
+      theme: themeRef.current.value,
       fileName: file.fileName || "",
       fileURL: file.fileURL || "",
     };
@@ -56,15 +56,16 @@ const CardAddForm = ({ FileInput, addCard }) => {
         placeholder="company"
       />
       <select
-        ref={designRef}
+        ref={themeRef}
         className={styles.select}
-        name="design"
-        defaultValue="light"
+        name="theme"
+        placeholder="theme"
       >
         <option value="light">Light</option>
-        <option value="black">Black</option>
-        <option value="gold">Gold</option>
-        <option value="silver">Silver</option>
+        <option value="dark">Dark</option>
+        <option value="vintage">Vintage</option>
+        <option value="pattern_blue">Pattern_blue</option>
+        <option value="pattern_yellow">Pattern_yellow</option>
       </select>
       <input
         ref={jobRef}
@@ -93,6 +94,6 @@ const CardAddForm = ({ FileInput, addCard }) => {
       <CardButton name="Add" onClick={onSubmit} />
     </form>
   );
-};
+});
 
 export default CardAddForm;

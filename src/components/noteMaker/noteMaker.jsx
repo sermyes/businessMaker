@@ -1,10 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
+import Footer from "../footer/footer";
+import Header from "../header/header";
 import styles from "./noteMaker.module.css";
 
-const NoteMaker = ({}) => {
+const NoteMaker = ({ authService, onSignout }) => {
   return (
-    <section className={styles.container}>
-      <h1>NoteMaker</h1>
+    <section className={styles.section}>
+      <Header onSignout={onSignout} />
+      <section className={styles.container}>
+        <h1>Note Maker</h1>
+      </section>
+      <Footer />
     </section>
   );
 };
