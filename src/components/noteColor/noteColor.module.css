@@ -13,13 +13,34 @@
   outline: none;
 }
 .colorButton:hover {
-  border: 2px solid rgba(0, 0, 0, 0.1);
+  border: 2px solid rgba(0, 0, 0, 0.3);
 }
 .selectColor {
   display: block;
   width: 100%;
   height: 100%;
   background: rgb(255, 149, 0);
+}
+.selectColor.scarlet {
+  background: rgb(255, 44, 82);
+}
+.selectColor.orange {
+  background: rgba(255, 149, 0);
+}
+.selectColor.green {
+  background: rgba(0, 148, 25);
+}
+.selectColor.yellow {
+  background: rgba(218, 174, 0);
+}
+.selectColor.cyan {
+  background: rgba(0, 116, 151);
+}
+.selectColor.purple {
+  background: rgba(55, 53, 174);
+}
+.selectColor.white {
+  background: rgba(255, 255, 255);
 }
 
 .container {

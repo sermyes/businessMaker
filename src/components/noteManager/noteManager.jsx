@@ -5,7 +5,33 @@ import NoteColor from "../noteColor/noteColor";
 import NoteSubject from "../noteSubject/noteSubject";
 import styles from "./noteManager.module.css";
 
-function NoteManager({ onClose, notes }) {
+function NoteManager({
+  onClose,
+  notes,
+  addNote,
+  setSelectedNote,
+  updateSetting,
+  setting,
+}) {
+  const { color, size } = setting;
+  const onColorChange = (eventTarget) => {
+    const name = eventTarget.getAttribute("name");
+    const color = eventTarget.getAttribute("data-color");
+
+    updateSetting({
+      ...setting,
+      [name]: color,
+    });
+  };
+
+  const onChange = (e) => {
+    e.preventDefault();
+    updateSetting({
+      ...setting,
+      [e.currentTarget.name]: e.currentTarget.value,
+    });
+  };
+
   return (
     <NoteModal>
       <div className={styles.manager}>
@@ -36,7 +62,12 @@ function NoteManager({ onClose, notes }) {
             </h2>
             <div className={styles.fontContainer}>
               <span className={styles.fontTitle}>font-size </span>
-              <select className={styles.fontSize} defaultValue="regular">
+              <select
+                className={styles.fontSize}
+                name="size"
+                defaultValue={size}
+                onChange={onChange}
+              >
                 <option value="small">small</option>
                 <option value="regular">regular</option>
                 <option value="big">big</option>
@@ -44,7 +75,7 @@ function NoteManager({ onClose, notes }) {
             </div>
             <div className={styles.colorContainer}>
               <span className={styles.colorTitle}>color </span>
-              <NoteColor />
+              <NoteColor onColorChange={onColorChange} color={color} />
             </div>
           </div>
         </div>
@@ -52,9 +83,14 @@ function NoteManager({ onClose, notes }) {
           <ul className={styles.notes}>
             {notes &&
               Object.keys(notes).map((key) => (
-                <NoteSubject key={key} note={notes[key]} />
+                <NoteSubject
+                  key={key}
+                  note={notes[key]}
+                  setSelectedNote={setSelectedNote}
+                  onClose={onClose}
+                />
               ))}
-            <NoteAddButton onManager={true} />
+            <NoteAddButton onManager={true} addNote={addNote} />
           </ul>
         </div>
       </div>

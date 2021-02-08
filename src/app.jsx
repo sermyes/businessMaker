@@ -7,7 +7,7 @@ import Forgot from "./components/forgot/forgot";
 import NoteMaker from "./components/noteMaker/noteMaker";
 import CardMaker from "./components/cardMaker/cardMaker";
 
-function App({ FileInput, authService, cardRespository }) {
+function App({ FileInput, authService, cardRespository, noteRespository }) {
   const onSignout = useCallback(() => {
     authService.signout();
   }, [authService]);
@@ -35,9 +35,8 @@ function App({ FileInput, authService, cardRespository }) {
           </Route>
           <Route exact path="/noteMaker">
             <NoteMaker
-              FileInput={FileInput}
               authService={authService}
-              cardRespository={cardRespository}
+              noteRespository={noteRespository}
               onSignout={onSignout}
             />
           </Route>

@@ -9,7 +9,7 @@
   padding: 30px;
   display: flex;
   flex-direction: column;
-  background: rgb(255, 185, 86);
+  background: #fff;
   /* note color */
 }
 .header {
@@ -37,7 +37,7 @@
 }
 .iconContainer:hover {
   opacity: 1;
-  border: 2px solid rgba(0, 0, 0, 0.1);
+  border: 2px solid rgba(0, 0, 0, 0.3);
 }
 .icon {
   font-size: 20px;

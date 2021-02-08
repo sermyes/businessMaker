@@ -12,6 +12,27 @@
   background: rgb(255, 185, 86);
   /* note color */
 }
+.note.scarlet {
+  background: rgb(255, 100, 128);
+}
+.note.orange {
+  background: rgb(255, 185, 86);
+}
+.note.yellow {
+  background: rgb(255, 208, 18);
+}
+.note.cyan {
+  background: rgb(52, 170, 220);
+}
+.note.green {
+  background: rgb(76, 217, 100);
+}
+.note.purple {
+  background: rgb(93, 91, 209);
+}
+.note.white {
+  background: rgb(214, 214, 214);
+}
 
 .header {
   display: flex;
@@ -56,8 +77,6 @@
 .body {
   flex: 1;
   min-height: 0;
-  background: rgb(255, 223, 179);
-  /* content color */
 }
 
 .content {
@@ -68,17 +87,132 @@
   outline: none;
   border: none;
   background-attachment: local;
-  font-size: 16px;
-  background-image: linear-gradient(to right, white 10px, transparent 10px),
-    linear-gradient(to left, white 10px, transparent 10px),
+  font-size: 18px;
+  background-image: linear-gradient(
+      to right,
+      rgb(255, 223, 179) 10px,
+      transparent 10px
+    ),
+    linear-gradient(to left, rgb(255, 223, 179) 10px, transparent 10px),
     repeating-linear-gradient(
-      white,
-      white 35px,
-      rgb(255, 149, 0) 30px,
-      rgb(255, 149, 0) 31px,
+      rgb(255, 223, 179),
+      rgb(255, 223, 179) 35px,
+      rgb(255, 185, 86) 30px,
+      rgb(255, 185, 86) 31px,
       white 36px
     );
   line-height: 35px;
   padding: 8px 12px;
   /* textarea line color */
+}
+
+.content.small {
+  font-size: 14px;
+}
+.content.regular {
+  font-size: 18px;
+}
+.content.big {
+  font-size: 24px;
+}
+.content.scarlet {
+  background-image: linear-gradient(
+      to right,
+      rgb(255, 192, 204) 10px,
+      transparent 10px
+    ),
+    linear-gradient(to left, rgb(255, 192, 204) 10px, transparent 10px),
+    repeating-linear-gradient(
+      rgb(255, 192, 204),
+      rgb(255, 192, 204) 35px,
+      rgb(255, 100, 128) 30px,
+      rgb(255, 100, 128) 31px,
+      white 36px
+    );
+}
+.content.orange {
+  background-image: linear-gradient(
+      to right,
+      rgb(255, 223, 179) 10px,
+      transparent 10px
+    ),
+    linear-gradient(to left, rgb(255, 223, 179) 10px, transparent 10px),
+    repeating-linear-gradient(
+      rgb(255, 223, 179),
+      rgb(255, 223, 179) 35px,
+      rgb(255, 185, 86) 30px,
+      rgb(255, 185, 86) 31px,
+      white 36px
+    );
+}
+.content.yellow {
+  background-image: linear-gradient(
+      to right,
+      rgb(255, 240, 179) 10px,
+      transparent 10px
+    ),
+    linear-gradient(to left, rgb(255, 240, 179) 10px, transparent 10px),
+    repeating-linear-gradient(
+      rgb(255, 240, 179),
+      rgb(255, 240, 179) 35px,
+      rgb(255, 208, 18) 30px,
+      rgb(255, 208, 18) 31px,
+      white 36px
+    );
+}
+.content.cyan {
+  background-image: linear-gradient(
+      to right,
+      rgb(188, 228, 245) 10px,
+      transparent 10px
+    ),
+    linear-gradient(to left, rgb(188, 228, 245) 10px, transparent 10px),
+    repeating-linear-gradient(
+      rgb(188, 228, 245),
+      rgb(188, 228, 245) 35px,
+      rgb(52, 170, 220) 30px,
+      rgb(52, 170, 220) 31px,
+      white 36px
+    );
+}
+.content.green {
+  background-image: linear-gradient(
+      to right,
+      rgb(196, 244, 204) 10px,
+      transparent 10px
+    ),
+    linear-gradient(to left, rgb(196, 244, 204) 10px, transparent 10px),
+    repeating-linear-gradient(
+      rgb(196, 244, 204),
+      rgb(196, 244, 204) 35px,
+      rgb(76, 217, 100) 30px,
+      rgb(76, 217, 100) 31px,
+      white 36px
+    );
+}
+.content.purple {
+  background-image: linear-gradient(
+      to right,
+      rgb(200, 199, 243) 10px,
+      transparent 10px
+    ),
+    linear-gradient(to left, rgb(200, 199, 243) 10px, transparent 10px),
+    repeating-linear-gradient(
+      rgb(200, 199, 243),
+      rgb(200, 199, 243) 35px,
+      rgb(93, 91, 209) 30px,
+      rgb(93, 91, 209) 31px,
+      white 36px
+    );
+}
+.content.white {
+  background-image: linear-gradient(to right, white 10px, transparent 10px),
+    linear-gradient(to left, white 10px, transparent 10px),
+    repeating-linear-gradient(
+      white,
+      white 35px,
+      rgb(214, 214, 214) 30px,
+      rgb(214, 214, 214) 31px,
+      white 36px
+    );
 }

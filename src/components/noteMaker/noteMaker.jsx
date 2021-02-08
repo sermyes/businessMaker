@@ -8,7 +8,7 @@ import NoteDetail from "../noteDetail/noteDetail";
 import NoteManager from "../noteManager/noteManager";
 import styles from "./noteMaker.module.css";
 
-const NoteMaker = ({ authService, onSignout }) => {
+const NoteMaker = ({ authService, onSignout, noteRespository }) => {
   const history = useHistory();
   const [userId, setUserId] = useState(
     history.location.state && history.location.state.id
@@ -16,31 +16,8 @@ const NoteMaker = ({ authService, onSignout }) => {
   const [selectedNote, setSelectedNote] = useState(null);
   const [selectedManager, setSelectedManager] = useState(false);
 
-  const [notes, setNotes] = useState({
-    1: {
-      id: new Date().getTime(),
-      title: "Scheduling",
-      content:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-
-      color: "yellow",
-    },
-    2: {
-      id: new Date().getTime(),
-      title: "Black Pink",
-      content:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-
-      color: "yellow",
-    },
-    3: {
-      id: new Date().getTime(),
-      title: "LaLa LAND",
-      content:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-      color: "yellow",
-    },
-  });
+  const [notes, setNotes] = useState({});
+  const [setting, setSetting] = useState({ color: "orange", size: "regular" });
 
   const getDateFormat = (date) => {
     const year = date.getFullYear();
@@ -57,21 +34,28 @@ const NoteMaker = ({ authService, onSignout }) => {
   };
 
   const addNote = () => {
+    let color = setting.color;
+    let size = setting.size;
+
     const date = new Date();
     const noteId = date.getTime();
+    const newNote = {
+      id: noteId,
+      title: "",
+      content: "",
+      color: color,
+      size: size,
+      modificatedTime: "",
+      generatedTime: getDateFormat(date),
+    };
 
     setNotes((notes) => {
       const updated = { ...notes };
-      updated[noteId] = {
-        id: noteId,
-        title: "",
-        content: "",
-        color: "",
-        modificatedTime: "",
-        generatedTime: getDateFormat(date),
-      };
+      updated[noteId] = newNote;
       return updated;
     });
+
+    noteRespository.saveNote(userId, newNote);
   };
 
   const deleteNote = (note) => {
@@ -80,6 +64,8 @@ const NoteMaker = ({ authService, onSignout }) => {
       delete updated[note.id];
       return updated;
     });
+
+    noteRespository.removeNote(userId, note);
   };
 
   const updateNote = (note) => {
@@ -88,6 +74,19 @@ const NoteMaker = ({ authService, onSignout }) => {
       updated[note.id] = note;
       return updated;
     });
+
+    selectedNote && setSelectedNote(note);
+    noteRespository.saveNote(userId, note);
+  };
+
+  const updateSetting = (setting) => {
+    setSetting((settings) => {
+      const updated = { ...settings };
+      updated[setting.name] = setting;
+      return updated;
+    });
+
+    noteRespository.saveNoteSetting(userId, setting);
   };
 
   const goToCardMaker = () => {
@@ -106,14 +105,47 @@ const NoteMaker = ({ authService, onSignout }) => {
   };
 
   useEffect(() => {
-    console.log(userId);
+    if (!userId) {
+      return;
+    }
+
+    const stopSync = noteRespository.syncNote(userId, (noteApp) => {
+      if (noteApp.setting) {
+        setNotes(noteApp.notes);
+        setSetting(noteApp.setting);
+      } else {
+        setNotes(noteApp.notes);
+      }
+    });
+
+    return () => stopSync();
+  }, [userId, noteRespository]);
+
+  useEffect(() => {
+    authService.onAuthChange((user) => {
+      if (user) {
+        setUserId(userId);
+      } else {
+        history.push("/");
+      }
+    });
   });
 
   return (
     <section className={styles.section}>
       <Header onSignout={onSignout} goToCardMaker={goToCardMaker} />
       <section className={styles.container}>
-        <h1 className={styles.title}>Note Maker</h1>
+        <h1 className={styles.title}>
+          Note Maker
+          <button
+            className={styles.setting}
+            onClick={() => {
+              setSelectedManager(true);
+            }}
+          >
+            <i className={`${styles.settingIcon} fas fa-cog`}></i>
+          </button>
+        </h1>
         <ul className={styles.noteContainer}>
           {notes &&
             Object.keys(notes).map((key) => (
@@ -126,16 +158,24 @@ const NoteMaker = ({ authService, onSignout }) => {
             ))}
           <NoteAddButton addNote={addNote} />
         </ul>
+        {selectedManager && (
+          <NoteManager
+            notes={notes}
+            onClose={onManagerClose}
+            addNote={addNote}
+            setSelectedNote={setSelectedNote}
+            updateSetting={updateSetting}
+            setting={setting}
+          />
+        )}
         {selectedNote && (
           <NoteDetail
             selectedNote={selectedNote}
             onClose={onDetailClose}
             deleteNote={deleteNote}
             updateNote={updateNote}
+            setting={setting}
           />
-        )}
-        {selectedManager && (
-          <NoteManager notes={notes} onClose={onManagerClose} />
         )}
       </section>
       <Footer />

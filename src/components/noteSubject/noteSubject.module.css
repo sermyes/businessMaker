@@ -1,12 +1,45 @@
 .note {
+  cursor: pointer;
   flex-basis: 10%;
   width: 100%;
   height: 10%;
   display: flex;
   align-items: center;
-  background: yellowgreen;
+  border-left-width: 10px;
+  border-left-style: solid;
+  border-left-color: rgb(255, 185, 86);
+  background: rgb(255, 223, 179);
   /* background-color 변경 */
 }
+.note.scarlet {
+  border-color: rgb(255, 100, 128);
+  background: rgb(255, 192, 204);
+}
+.note.orange {
+  border-color: rgb(255, 185, 86);
+  background: rgb(255, 223, 179);
+}
+.note.yellow {
+  border-color: rgb(255, 208, 18);
+  background: rgb(255, 240, 179);
+}
+.note.cyan {
+  border-color: rgb(52, 170, 220);
+  background: rgb(188, 228, 245);
+}
+.note.green {
+  border-color: rgb(76, 217, 100);
+  background: rgb(196, 244, 204);
+}
+.note.purple {
+  border-color: rgb(93, 91, 209);
+  background: rgb(200, 199, 243);
+}
+.note.white {
+  border-color: rgb(214, 214, 214);
+  background: rgb(255, 255, 255);
+}
+
 .titleContainer {
   flex-basis: 60%;
   width: 100%;
@@ -14,11 +47,11 @@
   display: flex;
   align-items: center;
   padding-left: 20px;
-  border-left: 10px solid blue;
-  /* border-color 변경 */
 }
 .title {
   font-size: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .timeContainer {
   flex-basis: 40%;

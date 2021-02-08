@@ -1,6 +1,6 @@
 .note {
   flex-basis: 20%;
-  margin: 20px 2.5% 10px;
+  margin: 20px 2.2% 10px;
   background-color: blanchedalmond;
   width: 100%;
   height: 250px;
@@ -8,18 +8,44 @@
   flex-direction: column;
 }
 .titleContainer {
-  background-color: burlywood;
+  background-color: rgb(255, 185, 86);
   line-height: 45px;
   height: 45px;
   display: flex;
 }
+.titleContainer.scarlet {
+  background: rgb(255, 100, 128);
+}
+.titleContainer.orange {
+  background: rgb(255, 185, 86);
+}
+.titleContainer.yellow {
+  background: rgb(255, 208, 18);
+}
+.titleContainer.cyan {
+  background: rgb(52, 170, 220);
+}
+.titleContainer.green {
+  background: rgb(76, 217, 100);
+}
+.titleContainer.purple {
+  background: rgb(93, 91, 209);
+}
+.titleContainer.white {
+  background: rgb(214, 214, 214);
+}
+
 .title {
+  width: 100%;
   font-size: 20px;
   font-weight: 600;
   flex-basis: 80%;
   padding: 0 10px;
   pointer-events: none;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
+
 .iconContainer {
   cursor: pointer;
   flex-basis: 20%;
@@ -27,28 +53,57 @@
   justify-content: center;
   align-items: center;
   transition: opacity 0.2s;
+  border: 3px solid transparent;
+  background: transparent;
   opacity: 0.8;
 }
 .iconContainer:hover {
   opacity: 1;
-  border: 2px solid rgba(0, 0, 0, 0.1);
+  border: 3px solid rgba(0, 0, 0, 0.3);
 }
 .icon {
   font-size: 20px;
 }
 .contentContainer {
   cursor: pointer;
-  background-color: cornflowerblue;
+  background: rgb(255, 223, 179);
   height: 100%;
   flex: 1;
   padding: 15px 10px 10px;
   overflow: hidden;
 }
+.contentContainer.scarlet {
+  background: rgb(255, 192, 204);
+}
+.contentContainer.orange {
+  background: rgb(255, 223, 179);
+}
+.contentContainer.yellow {
+  background: rgb(255, 240, 179);
+}
+.contentContainer.cyan {
+  background: rgb(188, 228, 245);
+}
+.contentContainer.green {
+  background: rgb(196, 244, 204);
+}
+.contentContainer.purple {
+  background: rgb(200, 199, 243);
+}
+.contentContainer.white {
+  background: rgb(255, 255, 255);
+}
+
 .content {
+  width: 100%;
   height: 100%;
   overflow: hidden;
   font-size: 16px;
   font-weight: 600;
+  resize: none;
+  pointer-events: none;
+  background: transparent;
+  border: none;
 }
 .content:hover {
   transform: scale(1.01);

@@ -18,6 +18,20 @@
   margin-bottom: 18px;
   color: #385461;
 }
+.setting {
+  margin-left: 10px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  opacity: 0.5;
+}
+.setting:hover {
+  opacity: 1;
+}
+.settingIcon {
+  font-size: 24px;
+}
 .noteContainer {
   width: 100%;
   height: 100%;
