@@ -1,10 +1,13 @@
 import React from "react";
 import styles from "./note.module.css";
 
-const Note = ({ note }) => {
-  console.log(note);
-  const onManager = () => {};
-  const onDetail = () => {};
+const Note = ({ note, setSelectedNote, setSelectedManager }) => {
+  const onManager = () => {
+    setSelectedManager(true);
+  };
+  const onDetail = () => {
+    setSelectedNote(note);
+  };
 
   return (
     <li className={styles.note}>

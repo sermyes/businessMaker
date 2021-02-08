@@ -1,62 +1,115 @@
-.wrapper {
+.manager {
   box-sizing: border-box;
-  display: block;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  z-index: 1000;
-  overflow: auto;
-  outline: 0;
-}
-
-.overlay {
-  box-sizing: border-box;
-  display: block;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 999;
-}
-
-.inner {
-  box-sizing: border-box;
-  position: relative;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
   background-color: #fff;
   border-radius: 10px;
-  width: 50%;
-  height: 60%;
-  top: 50%;
-  transform: translateY(-50%);
+  width: 70%;
+  height: 96%;
   margin: 0 auto;
-  padding: 50px 20px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  background: rgb(255, 185, 86);
+  /* note color */
 }
-
-.iconBtn {
-  border: none;
-  outline: none;
+.header {
+  display: flex;
+  height: 50px;
+  margin-bottom: 15px;
+  background: transparent;
 }
-.icon {
-  cursor: pointer;
-  position: absolute;
-  color: #007177;
+.managerTitle {
+  flex: 1;
+  text-align: center;
   font-size: 28px;
-  right: 1.5%;
-  top: 1.5%;
+  line-height: 50px;
+}
+.iconContainer {
+  cursor: pointer;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  outline: none;
+  border: 2px solid transparent;
   opacity: 0.8;
 }
-.icon:hover {
+.iconContainer:hover {
   opacity: 1;
+  border: 2px solid rgba(0, 0, 0, 0.1);
 }
+.icon {
+  font-size: 20px;
+}
+/* manager header */
 
-@media screen and (max-width: 991px) {
-  .inner {
-    width: 70%;
-    height: 80%;
-  }
+.option {
+  display: flex;
+  height: 50px;
+  margin-bottom: 30px;
+  background: transparent;
+  justify-content: space-between;
+}
+.sortContainer {
+  height: 100%;
+  flex-basis: 40%;
+  border: 1px solid #000;
+  border-radius: 10px 0 0 10px;
+  padding: 5px;
+}
+.sort {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  outline: none;
+  border: 1px solid transparent;
+}
+.sort:hover {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+.setting {
+  flex-basis: 60%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border: 1px solid #000;
+  border-radius: 0 10px 10px 0;
+  padding: 5px;
+}
+.settingTitle {
+  font-size: 18px;
+  line-height: 30px;
+}
+.fontTitle,
+.colorTitle {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 30px;
+}
+.colorContainer {
+  display: flex;
+}
+.colorTitle {
+  margin-right: 5px;
+}
+.fontSize {
+  cursor: pointer;
+  outline: none;
+  border: 1px solid transparent;
+  background: transparent;
+}
+.fontSize:hover {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+.notesContainer {
+  flex: 1;
+  min-height: 0;
+}
+.notes {
+  width: 100%;
+  height: 100%;
+  border: 1px solid black;
+  overflow-y: auto;
 }

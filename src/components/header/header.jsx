@@ -2,29 +2,37 @@ import React, { memo } from "react";
 import { useHistory } from "react-router-dom";
 import styles from "./header.module.css";
 
-const NavMenu = memo(() => {
+const NavMenu = memo(({ goToNoteMaker, goToCardMaker }) => {
   const history = useHistory();
 
-  const goToCardMaker = (e) => {
+  const onCardMakerClick = (e) => {
     e.preventDefault();
-    history.push("/cardMaker");
+    if (history.location.pathname === "/cardMaker") {
+      return;
+    }
+
+    goToCardMaker();
   };
 
-  const goToNoteMaker = (e) => {
+  const onNoteMakerClick = (e) => {
     e.preventDefault();
-    history.push("/noteMaker");
+    if (history.location.pathname === "/noteMaker") {
+      return;
+    }
+
+    goToNoteMaker();
   };
 
   return (
     <nav className={styles.nav}>
       <ul className={styles.ul}>
         <li className={styles.li}>
-          <a className={styles.cardMaker} href="!#" onClick={goToCardMaker}>
+          <a className={styles.cardMaker} href="!#" onClick={onCardMakerClick}>
             <i className={`${styles.icon} far fa-id-card`}></i>
           </a>
         </li>
         <li className={styles.li}>
-          <a className={styles.noteMaker} href="!#" onClick={goToNoteMaker}>
+          <a className={styles.noteMaker} href="!#" onClick={onNoteMakerClick}>
             <i className={`${styles.icon} far fa-sticky-note`}></i>
           </a>
         </li>
@@ -33,7 +41,7 @@ const NavMenu = memo(() => {
   );
 });
 
-const Header = memo(({ onSignout }) => {
+const Header = memo(({ onSignout, goToNoteMaker, goToCardMaker }) => {
   return (
     <header className={styles.header}>
       {!onSignout && (
@@ -56,7 +64,10 @@ const Header = memo(({ onSignout }) => {
             />
             <h1 className={styles.title}>Business Management</h1>
           </div>
-          <NavMenu />
+          <NavMenu
+            goToNoteMaker={goToNoteMaker}
+            goToCardMaker={goToCardMaker}
+          />
           <button className={styles.signout} onClick={onSignout}>
             Logout
           </button>

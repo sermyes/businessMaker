@@ -1,0 +1,32 @@
+.note {
+  flex-basis: 10%;
+  width: 100%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  background: yellowgreen;
+  /* background-color 변경 */
+}
+.titleContainer {
+  flex-basis: 60%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  border-left: 10px solid blue;
+  /* border-color 변경 */
+}
+.title {
+  font-size: 20px;
+}
+.timeContainer {
+  flex-basis: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.time {
+  font-size: 14px;
+  font-weight: 600;
+}

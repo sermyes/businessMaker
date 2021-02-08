@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, useCallback } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import Footer from "../footer/footer";
 import Header from "../header/header";
 import styles from "./signin.module.css";
@@ -15,16 +15,12 @@ const Signin = ({ authService }) => {
 
   const history = useHistory();
 
-  const goToMain = useCallback(
-    (userId) => {
-      history.push({
-        pathname: "/cardMaker",
-        state: { id: userId },
-      });
-    },
-    [history]
-  );
-
+  const goToMain = (userId) => {
+    history.push({
+      pathname: "/cardMaker",
+      state: { id: userId },
+    });
+  };
   const goToSignup = (e) => {
     e.preventDefault();
     history.push("/signup");
@@ -78,7 +74,7 @@ const Signin = ({ authService }) => {
     return () => {
       setLoading(false);
     };
-  }, [authService, goToMain]);
+  });
 
   return (
     <section className={styles.section}>

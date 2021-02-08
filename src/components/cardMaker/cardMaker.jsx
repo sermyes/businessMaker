@@ -13,6 +13,13 @@ const CardMaker = ({ FileInput, authService, cardRespository, onSignout }) => {
     history.location.state && history.location.state.id
   );
 
+  const goToNoteMaker = () => {
+    history.push({
+      pathname: "/noteMaker",
+      state: { id: userId },
+    });
+  };
+
   const addOrUpdateCard = (card) => {
     setCards((cards) => {
       const updated = { ...cards };
@@ -57,7 +64,7 @@ const CardMaker = ({ FileInput, authService, cardRespository, onSignout }) => {
 
   return (
     <section className={styles.section}>
-      <Header onSignout={onSignout} />
+      <Header onSignout={onSignout} goToNoteMaker={goToNoteMaker} />
       <section className={styles.container}>
         <CardEditor
           FileInput={FileInput}
@@ -67,6 +74,7 @@ const CardMaker = ({ FileInput, authService, cardRespository, onSignout }) => {
         />
         <CardPreview cards={cards} />
       </section>
+      )
       <Footer />
     </section>
   );

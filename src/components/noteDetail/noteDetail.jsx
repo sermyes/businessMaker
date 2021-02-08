@@ -1,29 +1,64 @@
-import React, { useEffect } from "react";
-import styles from "./modal.module.css";
-function Modal({ children, onClose }) {
-  useEffect(() => {
-    document.body.style.cssText = `position: fixed; top: -${window.scrollY}px`;
+import React, { useEffect, useRef, useState } from "react";
+import NoteModal from "../../noteModal/noteModal";
+import NoteColor from "../noteColor/noteColor";
+import styles from "./noteDetail.module.css";
 
-    return () => {
-      const scrollY = document.body.style.top;
-      document.body.style.cssText = `position: ""; top: "";`;
-      window.scrollTo(0, parseInt(scrollY || "0") * -1);
-    };
-  }, []);
+function NoteDetail({ selectedNote, onClose, deleteNote, updateNote }) {
+  const titleRef = useRef();
+  const contentRef = useRef();
+  const [active, setActive] = useState(false);
+
+  const onWirteClick = () => {
+    if (active) {
+      titleRef.current.classList.remove("active");
+      contentRef.current.blur();
+      setActive(false);
+    } else {
+      titleRef.current.classList.add("active");
+      contentRef.current.focus();
+      setActive(true);
+    }
+  };
+
+  const onDeleteClick = () => {
+    deleteNote(selectedNote);
+    onClose(null);
+  };
 
   return (
-    <div>
-      <div className={styles.overlay} />
-      <div className={styles.wrapper}>
-        <div className={styles.inner}>
-          <button className={styles.iconBtn} onClick={() => onClose(null)}>
-            close
+    <NoteModal>
+      <div className={styles.note}>
+        <div className={styles.header}>
+          <button
+            className={styles.iconContainer}
+            onClick={() => onClose(null)}
+          >
+            <i className={`${styles.icon} fas fa-arrow-left`}></i>
           </button>
-          {children}
+          <input
+            ref={titleRef}
+            className={`${styles.title} noteDetail__title`}
+            type="text"
+          />
+          <NoteColor />
+          <button className={styles.iconContainer} onClick={onWirteClick}>
+            <i className={`${styles.icon} fas fa-pencil-alt`}></i>
+          </button>
+          <button className={styles.iconContainer} onClick={onDeleteClick}>
+            <i className={`${styles.icon} far fa-trash-alt`}></i>
+          </button>
+        </div>
+        <div className={styles.body}>
+          <textarea
+            ref={contentRef}
+            className={styles.content}
+            cols="30"
+            rows="10"
+          ></textarea>
         </div>
       </div>
-    </div>
+    </NoteModal>
   );
 }
 
-export default Modal;
+export default NoteDetail;

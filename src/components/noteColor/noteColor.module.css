@@ -1,0 +1,73 @@
+.colorContainer {
+  width: 50px;
+  position: relative;
+  outline: none;
+}
+.colorButton {
+  padding: 8px;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: 2px solid transparent;
+  cursor: pointer;
+  outline: none;
+}
+.colorButton:hover {
+  border: 2px solid rgba(0, 0, 0, 0.1);
+}
+.selectColor {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: rgb(255, 149, 0);
+}
+
+.container {
+  position: absolute;
+  display: none;
+  flex-wrap: wrap;
+  width: 170px;
+  left: -110%;
+  z-index: 9999;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  background-color: rgb(225, 225, 225);
+  padding: 5px;
+}
+.item {
+  display: block;
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+  border: 2px solid transparent;
+}
+.item:hover {
+  border: 2px solid rgba(0, 0, 0, 0.5);
+}
+.color {
+  display: block;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+.scarlet {
+  background: rgb(255, 44, 82);
+}
+.orange {
+  background: rgb(255, 149, 0);
+}
+.green {
+  background: rgb(0, 148, 25);
+}
+.yellow {
+  background: rgb(218, 174, 0);
+}
+.cyan {
+  background: rgb(0, 116, 151);
+}
+.purple {
+  background: rgb(55, 53, 174);
+}
+.white {
+  background: rgb(255, 255, 255);
+}

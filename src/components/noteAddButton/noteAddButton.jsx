@@ -1,18 +1,29 @@
 import React from "react";
 import styles from "./noteAddButton.module.css";
 
-const NoteAddButton = ({ addNote }) => {
+const NoteAddButton = ({ addNote, onManager }) => {
   const onClick = (e) => {
     e.preventDefault();
     addNote();
   };
 
   return (
-    <li className={styles.container}>
-      <button className={styles.button} onClick={onClick}>
-        <i className={`${styles.icon} fas fa-plus`}></i>
-      </button>
-    </li>
+    <>
+      {!onManager && (
+        <li className={styles.maker}>
+          <button className={styles.makerButton} onClick={onClick}>
+            <i className={`${styles.makerIcon} fas fa-plus`}></i>
+          </button>
+        </li>
+      )}
+      {onManager && (
+        <li className={styles.manager}>
+          <button className={styles.managerButton} onClick={onClick}>
+            <i className={`${styles.managerIcon} fas fa-plus`}></i>
+          </button>
+        </li>
+      )}
+    </>
   );
 };
 

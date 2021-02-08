@@ -1,11 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router";
 import Footer from "../footer/footer";
 import Header from "../header/header";
 import Note from "../note/note";
 import NoteAddButton from "../noteAddButton/noteAddButton";
+import NoteDetail from "../noteDetail/noteDetail";
+import NoteManager from "../noteManager/noteManager";
 import styles from "./noteMaker.module.css";
 
 const NoteMaker = ({ authService, onSignout }) => {
+  const history = useHistory();
+  const [userId, setUserId] = useState(
+    history.location.state && history.location.state.id
+  );
+  const [selectedNote, setSelectedNote] = useState(null);
+  const [selectedManager, setSelectedManager] = useState(false);
+
   const [notes, setNotes] = useState({
     1: {
       id: new Date().getTime(),
@@ -57,24 +67,76 @@ const NoteMaker = ({ authService, onSignout }) => {
         title: "",
         content: "",
         color: "",
-        date: getDateFormat(date),
+        modificatedTime: "",
+        generatedTime: getDateFormat(date),
       };
       return updated;
     });
   };
 
+  const deleteNote = (note) => {
+    setNotes((notes) => {
+      const updated = { ...notes };
+      delete updated[note.id];
+      return updated;
+    });
+  };
+
+  const updateNote = (note) => {
+    setNotes((notes) => {
+      const updated = { ...notes };
+      updated[note.id] = note;
+      return updated;
+    });
+  };
+
+  const goToCardMaker = () => {
+    history.push({
+      pathname: "/cardMaker",
+      state: { id: userId },
+    });
+  };
+
+  const onDetailClose = () => {
+    setSelectedNote(null);
+  };
+
+  const onManagerClose = () => {
+    setSelectedManager(null);
+  };
+
+  useEffect(() => {
+    console.log(userId);
+  });
+
   return (
     <section className={styles.section}>
-      <Header onSignout={onSignout} />
+      <Header onSignout={onSignout} goToCardMaker={goToCardMaker} />
       <section className={styles.container}>
         <h1 className={styles.title}>Note Maker</h1>
         <ul className={styles.noteContainer}>
           {notes &&
             Object.keys(notes).map((key) => (
-              <Note key={key} note={notes[key]} />
+              <Note
+                key={key}
+                note={notes[key]}
+                setSelectedNote={setSelectedNote}
+                setSelectedManager={setSelectedManager}
+              />
             ))}
           <NoteAddButton addNote={addNote} />
         </ul>
+        {selectedNote && (
+          <NoteDetail
+            selectedNote={selectedNote}
+            onClose={onDetailClose}
+            deleteNote={deleteNote}
+            updateNote={updateNote}
+          />
+        )}
+        {selectedManager && (
+          <NoteManager notes={notes} onClose={onManagerClose} />
+        )}
       </section>
       <Footer />
     </section>
