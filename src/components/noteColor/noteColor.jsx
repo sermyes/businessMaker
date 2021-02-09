@@ -1,7 +1,7 @@
 import React, { memo, useRef, useState } from "react";
 import styles from "./noteColor.module.css";
 
-const NoteColor = memo(({ onManager, onColorChange, color }) => {
+const NoteColor = memo(({ onColorChange, color }) => {
   const [active, setActive] = useState(false);
   const colorListRef = useRef();
 

@@ -1,7 +1,7 @@
-import React from "react";
+import React, { memo } from "react";
 import styles from "./noteSubject.module.css";
 
-const NoteSubject = ({ note, setSelectedNote, onClose }) => {
+const NoteSubject = memo(({ note, setSelectedNote }) => {
   const { title, color, updatedTime } = note;
 
   const onClick = () => {
@@ -35,10 +35,12 @@ const NoteSubject = ({ note, setSelectedNote, onClose }) => {
         <h3 className={styles.title}>{title}</h3>
       </div>
       <div className={styles.timeContainer}>
-        <span className={styles.time}>{updatedTime}</span>
+        <span className={styles.time}>
+          {updatedTime.substring(0, updatedTime.length - 3)}
+        </span>
       </div>
     </li>
   );
-};
+});
 
 export default NoteSubject;

@@ -29,8 +29,10 @@ const NoteMaker = ({ authService, onSignout, noteRespository }) => {
     hour = hour < 10 ? `0${hour}` : hour;
     let min = date.getMinutes();
     min = min < 10 ? `0${min}` : min;
+    let sec = date.getSeconds();
+    sec = sec < 10 ? `0${sec}` : sec;
 
-    return `${year}. ${month}. ${day}. ${str} ${hour}:${min}`;
+    return `${year}. ${month}. ${day}. ${str} ${hour}:${min}:${sec}`;
   };
 
   const addNote = () => {
@@ -53,7 +55,6 @@ const NoteMaker = ({ authService, onSignout, noteRespository }) => {
       updated[noteId] = newNote;
       return updated;
     });
-
     noteRespository.saveNote(userId, newNote);
   };
 

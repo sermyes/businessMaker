@@ -1,7 +1,7 @@
-import React from "react";
+import React, { memo } from "react";
 import styles from "./noteAddButton.module.css";
 
-const NoteAddButton = ({ addNote, onManager }) => {
+const NoteAddButton = memo(({ addNote, onManager }) => {
   const onClick = (e) => {
     e.preventDefault();
     addNote();
@@ -25,6 +25,6 @@ const NoteAddButton = ({ addNote, onManager }) => {
       )}
     </>
   );
-};
+});
 
 export default NoteAddButton;

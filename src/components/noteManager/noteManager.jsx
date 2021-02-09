@@ -1,25 +1,24 @@
-import React, { useEffect, useRef, useState } from "react";
-import NoteModal from "../../noteModal/noteModal";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import NoteModal from "../noteModal/noteModal";
 import NoteAddButton from "../noteAddButton/noteAddButton";
 import NoteColor from "../noteColor/noteColor";
 import NoteSubject from "../noteSubject/noteSubject";
 import styles from "./noteManager.module.css";
 
-function NoteManager({
+const NoteManager = ({
   onClose,
   notes,
   addNote,
   setSelectedNote,
   updateSetting,
   setting,
-}) {
+}) => {
   const { color, size } = setting;
   const sortRef = useRef();
-  const [sortedNotes, setSortedNotes] = useState(
-    Object.values(notes).sort((a, b) =>
-      a.updatedTime > b.updatedTime ? -1 : 1
-    )
-  );
+  const searchRef = useRef();
+  const searchInputRef = useRef();
+  const [active, setActive] = useState(false);
+  const [sortedNotes, setSortedNotes] = useState([]);
 
   const onColorChange = (eventTarget) => {
     const name = eventTarget.getAttribute("name");
@@ -39,7 +38,35 @@ function NoteManager({
     });
   };
 
-  const onSortChange = () => {
+  const onSearchBar = (e) => {
+    e.preventDefault();
+    if (active) {
+      searchRef.current.style.cssText = `height: 0`;
+      setActive(false);
+    } else {
+      searchRef.current.style.cssText = `height: 32px`;
+      searchInputRef.current.focus();
+      setActive(true);
+    }
+  };
+
+  const search = (e) => {
+    if (searchInputRef.current.value === "") {
+      return;
+    }
+    e.preventDefault();
+    const str = searchInputRef.current.value;
+
+    setSortedNotes((notes) => {
+      const sorted = notes.filter(
+        (note) =>
+          note.title.indexOf(str) !== -1 || note.content.indexOf(str) !== -1
+      );
+      return sorted;
+    });
+  };
+
+  const sortNotes = useCallback(() => {
     if (sortRef.current.value === "title") {
       setSortedNotes(
         Object.values(notes).sort((a, b) => (a.title > b.title ? 1 : -1))
@@ -51,7 +78,15 @@ function NoteManager({
         )
       );
     }
+  }, [notes]);
+
+  const onSortChange = () => {
+    sortNotes();
   };
+
+  useEffect(() => {
+    sortNotes();
+  }, [sortNotes]);
 
   return (
     <NoteModal>
@@ -64,9 +99,22 @@ function NoteManager({
             <i className={`${styles.icon} fas fa-arrow-left`}></i>
           </button>
           <h2 className={styles.managerTitle}>Note Manager</h2>
-          <button className={styles.iconContainer}>
+          <button className={styles.iconContainer} onClick={onSearchBar}>
             <i className={`${styles.icon} fas fa-search`}></i>
           </button>
+        </div>
+        <div ref={searchRef} className={styles.searchContainer}>
+          <div className={styles.searchBar}>
+            <input
+              type="text"
+              className={styles.searchText}
+              ref={searchInputRef}
+              name="search"
+            />
+            <button className={styles.searchBtn} onClick={search}>
+              <i className={`${styles.searchIcon} fas fa-search`}></i>
+            </button>
+          </div>
         </div>
         <div className={styles.option}>
           <div className={styles.sortContainer}>
@@ -80,7 +128,6 @@ function NoteManager({
               <option value="title">Sort by Title</option>
             </select>
           </div>
-
           <div className={styles.setting}>
             <h2 className={styles.settingTitle}>
               Settings <i className={`${styles.settingIcon} fas fa-cog`}></i>
@@ -121,6 +168,6 @@ function NoteManager({
       </div>
     </NoteModal>
   );
-}
+};
 
 export default NoteManager;

@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { memo, useEffect } from "react";
 import styles from "./noteModal.module.css";
 
-const NoteModal = ({ children }) => {
+const NoteModal = memo(({ children }) => {
   useEffect(() => {
     document.body.style.cssText = `position: fixed; top: -${window.scrollY}px`;
 
@@ -18,6 +18,6 @@ const NoteModal = ({ children }) => {
       <div className={styles.wrapper}>{children}</div>
     </div>
   );
-};
+});
 
 export default NoteModal;

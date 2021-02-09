@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import styles from "./note.module.css";
 
-const Note = ({ note, setSelectedNote, setSelectedManager }) => {
-  const { title, content, color, id, generatedTime, modificatedTime } = note;
+const Note = memo(({ note, setSelectedNote, setSelectedManager }) => {
+  const { title, content, color } = note;
 
   const onManager = () => {
     setSelectedManager(true);
@@ -52,6 +52,6 @@ const Note = ({ note, setSelectedNote, setSelectedManager }) => {
       </div>
     </li>
   );
-};
+});
 
 export default Note;

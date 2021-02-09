@@ -1,20 +1,21 @@
-import React, { useEffect, useRef, useState } from "react";
-import NoteModal from "../../noteModal/noteModal";
+import React, { useRef, useState } from "react";
+import NoteModal from "../noteModal/noteModal";
 import NoteColor from "../noteColor/noteColor";
 import styles from "./noteDetail.module.css";
 
-function NoteDetail({
+const NoteDetail = ({
   selectedNote,
   onClose,
   deleteNote,
   updateNote,
   setting,
-}) {
+}) => {
   const titleRef = useRef();
   const contentRef = useRef();
   const [active, setActive] = useState(false);
   const { title, content, color, updatedTime } = selectedNote;
   const { size } = setting;
+
   const onWirteClick = () => {
     if (active) {
       titleRef.current.classList.remove("active");
@@ -83,6 +84,8 @@ function NoteDetail({
         return styles.regular;
       case "big":
         return styles.big;
+      default:
+        return styles.regular;
     }
   };
 
@@ -112,7 +115,9 @@ function NoteDetail({
             <i className={`${styles.icon} far fa-trash-alt`}></i>
           </button>
         </div>
-        <p className={styles.time}>{updatedTime}</p>
+        <p className={styles.time}>
+          {updatedTime.substring(0, updatedTime.length - 3)}
+        </p>
         <div className={styles.body}>
           <textarea
             ref={contentRef}
@@ -127,6 +132,6 @@ function NoteDetail({
       </div>
     </NoteModal>
   );
-}
+};
 
 export default NoteDetail;
