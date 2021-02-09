@@ -45,8 +45,7 @@ const NoteMaker = ({ authService, onSignout, noteRespository }) => {
       content: "",
       color: color,
       size: size,
-      modificatedTime: "",
-      generatedTime: getDateFormat(date),
+      updatedTime: getDateFormat(date),
     };
 
     setNotes((notes) => {
@@ -69,6 +68,8 @@ const NoteMaker = ({ authService, onSignout, noteRespository }) => {
   };
 
   const updateNote = (note) => {
+    note["updatedTime"] = getDateFormat(new Date());
+
     setNotes((notes) => {
       const updated = { ...notes };
       updated[note.id] = note;

@@ -13,14 +13,7 @@ function NoteDetail({
   const titleRef = useRef();
   const contentRef = useRef();
   const [active, setActive] = useState(false);
-  const {
-    title,
-    content,
-    color,
-    id,
-    generatedTime,
-    modificatedTime,
-  } = selectedNote;
+  const { title, content, color, updatedTime } = selectedNote;
   const { size } = setting;
   const onWirteClick = () => {
     if (active) {
@@ -119,6 +112,7 @@ function NoteDetail({
             <i className={`${styles.icon} far fa-trash-alt`}></i>
           </button>
         </div>
+        <p className={styles.time}>{updatedTime}</p>
         <div className={styles.body}>
           <textarea
             ref={contentRef}

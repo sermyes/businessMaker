@@ -37,7 +37,7 @@
 .header {
   display: flex;
   height: 50px;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
   background: transparent;
 }
 .iconContainer {
@@ -73,6 +73,13 @@
 }
 :global .noteDetail__title.active {
   background-color: rgb(255, 223, 179);
+}
+.time {
+  margin-bottom: 15px;
+  text-align: right;
+  padding: 0 10px;
+  font-weight: 500;
+  letter-spacing: 1px;
 }
 .body {
   flex: 1;

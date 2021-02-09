@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./noteSubject.module.css";
 
 const NoteSubject = ({ note, setSelectedNote, onClose }) => {
-  const { title, content, color, id, generatedTime, modificatedTime } = note;
+  const { title, color, updatedTime } = note;
 
   const onClick = () => {
     setSelectedNote(note);
@@ -35,7 +35,7 @@ const NoteSubject = ({ note, setSelectedNote, onClose }) => {
         <h3 className={styles.title}>{title}</h3>
       </div>
       <div className={styles.timeContainer}>
-        <span className={styles.time}></span>
+        <span className={styles.time}>{updatedTime}</span>
       </div>
     </li>
   );

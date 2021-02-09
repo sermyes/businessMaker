@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import NoteModal from "../../noteModal/noteModal";
 import NoteAddButton from "../noteAddButton/noteAddButton";
 import NoteColor from "../noteColor/noteColor";
@@ -14,6 +14,13 @@ function NoteManager({
   setting,
 }) {
   const { color, size } = setting;
+  const sortRef = useRef();
+  const [sortedNotes, setSortedNotes] = useState(
+    Object.values(notes).sort((a, b) =>
+      a.updatedTime > b.updatedTime ? -1 : 1
+    )
+  );
+
   const onColorChange = (eventTarget) => {
     const name = eventTarget.getAttribute("name");
     const color = eventTarget.getAttribute("data-color");
@@ -30,6 +37,20 @@ function NoteManager({
       ...setting,
       [e.currentTarget.name]: e.currentTarget.value,
     });
+  };
+
+  const onSortChange = () => {
+    if (sortRef.current.value === "title") {
+      setSortedNotes(
+        Object.values(notes).sort((a, b) => (a.title > b.title ? 1 : -1))
+      );
+    } else {
+      setSortedNotes(
+        Object.values(notes).sort((a, b) =>
+          a.updatedTime > b.updatedTime ? -1 : 1
+        )
+      );
+    }
   };
 
   return (
@@ -49,10 +70,14 @@ function NoteManager({
         </div>
         <div className={styles.option}>
           <div className={styles.sortContainer}>
-            <select className={styles.sort} defaultValue="modification">
-              <option value="modification">Sort by modificated time</option>
-              <option value="creation">Sort by generated time</option>
-              <option value="title">Sort by title</option>
+            <select
+              ref={sortRef}
+              className={styles.sort}
+              defaultValue="updated"
+              onChange={onSortChange}
+            >
+              <option value="updated">Sort by Updated Time</option>
+              <option value="title">Sort by Title</option>
             </select>
           </div>
 
@@ -81,11 +106,11 @@ function NoteManager({
         </div>
         <div className={styles.notesContainer}>
           <ul className={styles.notes}>
-            {notes &&
-              Object.keys(notes).map((key) => (
+            {sortedNotes &&
+              sortedNotes.map((note) => (
                 <NoteSubject
-                  key={key}
-                  note={notes[key]}
+                  key={note.id}
+                  note={note}
                   setSelectedNote={setSelectedNote}
                   onClose={onClose}
                 />
