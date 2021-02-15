@@ -74,7 +74,6 @@ const CardMaker = ({ FileInput, authService, cardRespository, onSignout }) => {
         />
         <CardPreview cards={cards} />
       </section>
-      )
       <Footer />
     </section>
   );

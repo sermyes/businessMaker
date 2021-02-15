@@ -40,9 +40,14 @@
   line-height: 40px;
   color: #fff;
 }
-.signinContainer > .signout {
+.btnContainer {
+  display: flex;
+  align-items: center;
+}
+.signout {
+  min-width: 100px;
   padding: 12px;
-  border-radius: 30%;
+  border-radius: 15%;
   background-color: #000;
   color: #fff;
   outline: 0;
@@ -77,3 +82,30 @@
   font-size: 24px;
 }
 /* signin header */
+
+@media screen and (max-width: 991px) {
+  .header {
+    padding: 17.5px 10px;
+  }
+  .logoContainer {
+    align-items: center;
+  }
+  .logoContainer > .title {
+    font-size: 22px;
+  }
+  .logoContainer > .logo {
+    height: 45px;
+  }
+  .nav {
+    position: static;
+    left: 0;
+    top: 0;
+    transform: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .logoContainer > .title {
+    text-indent: -9999px;
+  }
+}

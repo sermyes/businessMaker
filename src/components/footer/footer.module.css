@@ -3,9 +3,44 @@
   padding: 30px;
   background-color: #385461;
   text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 .title {
+  font-size: 16px;
+  font-weight: normal;
   text-align: center;
   color: #fff;
+  font-style: italic;
+  line-height: 30px;
+}
+.name {
+  margin-left: 5px;
+  letter-spacing: 1px;
+  font-style: normal;
+  font-size: 14px;
+  text-decoration: underline;
+}
+.contactContainer {
+  display: flex;
+  margin-left: 30px;
+}
+.contact {
+  display: block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #fff;
+  margin-left: 10px;
+  padding-top: 6px;
+  opacity: 0.6;
+  transition: opacity 0.3s ease-out;
+}
+.contact:hover {
+  opacity: 1;
+}
+.icon {
+  font-size: 18px;
+  color: #385461;
 }

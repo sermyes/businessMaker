@@ -68,9 +68,11 @@ const Header = memo(({ onSignout, goToNoteMaker, goToCardMaker }) => {
             goToNoteMaker={goToNoteMaker}
             goToCardMaker={goToCardMaker}
           />
-          <button className={styles.signout} onClick={onSignout}>
-            Logout
-          </button>
+          <div className={styles.btnContainer}>
+            <button className={styles.signout} onClick={onSignout}>
+              Logout
+            </button>
+          </div>
         </div>
       )}
     </header>
