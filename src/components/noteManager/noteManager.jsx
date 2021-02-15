@@ -117,17 +117,6 @@ const NoteManager = ({
           </div>
         </div>
         <div className={styles.option}>
-          <div className={styles.sortContainer}>
-            <select
-              ref={sortRef}
-              className={styles.sort}
-              defaultValue="updated"
-              onChange={onSortChange}
-            >
-              <option value="updated">Sort by Updated Time</option>
-              <option value="title">Sort by Title</option>
-            </select>
-          </div>
           <div className={styles.setting}>
             <h2 className={styles.settingTitle}>
               Settings <i className={`${styles.settingIcon} fas fa-cog`}></i>
@@ -147,8 +136,23 @@ const NoteManager = ({
             </div>
             <div className={styles.colorContainer}>
               <span className={styles.colorTitle}>color </span>
-              <NoteColor onColorChange={onColorChange} color={color} />
+              <NoteColor
+                onColorChange={onColorChange}
+                color={color}
+                onManager={true}
+              />
             </div>
+          </div>
+          <div className={styles.sortContainer}>
+            <select
+              ref={sortRef}
+              className={styles.sort}
+              defaultValue="updated"
+              onChange={onSortChange}
+            >
+              <option value="updated">Sort by Updated Time</option>
+              <option value="title">Sort by Title</option>
+            </select>
           </div>
         </div>
         <div className={styles.notesContainer}>

@@ -107,7 +107,11 @@ const NoteDetail = ({
             onChange={onChange}
             defaultValue={title ? title : ""}
           />
-          <NoteColor color={color} onColorChange={onColorChange} />
+          <NoteColor
+            color={color}
+            onColorChange={onColorChange}
+            onNote={true}
+          />
           <button className={styles.iconContainer} onClick={onWirteClick}>
             <i className={`${styles.icon} fas fa-pencil-alt`}></i>
           </button>

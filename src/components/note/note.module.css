@@ -108,3 +108,15 @@
 .content:hover {
   transform: scale(1.01);
 }
+
+@media screen and (max-width: 991px) {
+  .note {
+    flex-basis: 28%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .note {
+    flex-basis: 45%;
+  }
+}

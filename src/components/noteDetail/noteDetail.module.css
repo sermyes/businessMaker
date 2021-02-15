@@ -3,7 +3,7 @@
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
   background-color: #fff;
   border-radius: 10px;
-  width: 70%;
+  width: 90%;
   height: 96%;
   margin: 0 auto;
   padding: 30px;
@@ -222,4 +222,16 @@
       rgb(214, 214, 214) 31px,
       white 36px
     );
+}
+
+@media screen and (max-width: 991px) {
+  .note {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 591px) {
+  .iconContainer {
+    width: 40px;
+  }
 }

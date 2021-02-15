@@ -1,7 +1,7 @@
 import React, { memo, useRef, useState } from "react";
 import styles from "./noteColor.module.css";
 
-const NoteColor = memo(({ onColorChange, color }) => {
+const NoteColor = memo(({ onColorChange, color, onManager, onNote }) => {
   const [active, setActive] = useState(false);
   const colorListRef = useRef();
 
@@ -44,7 +44,12 @@ const NoteColor = memo(({ onColorChange, color }) => {
 
   return (
     <div className={styles.colorContainer}>
-      <button className={styles.colorButton} onClick={onColorClick}>
+      <button
+        className={`${styles.colorButton} ${onNote && styles.noteBtn} ${
+          onManager && styles.managerBtn
+        }`}
+        onClick={onColorClick}
+      >
         <span
           className={`${styles.selectColor} ${getColorStyle(color)}`}
         ></span>

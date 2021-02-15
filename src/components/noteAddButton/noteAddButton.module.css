@@ -53,3 +53,15 @@
 }
 
 /* manager add Button */
+
+@media screen and (max-width: 991px) {
+  .maker {
+    flex-basis: 28%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .maker {
+    flex-basis: 45%;
+  }
+}
