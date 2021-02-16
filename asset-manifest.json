@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/businessMaker/static/css/main.a3eb300a.chunk.css",
+    "main.js": "/businessMaker/static/js/main.403797a1.chunk.js",
+    "main.js.map": "/businessMaker/static/js/main.403797a1.chunk.js.map",
+    "runtime-main.js": "/businessMaker/static/js/runtime-main.96cfa354.js",
+    "runtime-main.js.map": "/businessMaker/static/js/runtime-main.96cfa354.js.map",
+    "static/js/2.4a227e4b.chunk.js": "/businessMaker/static/js/2.4a227e4b.chunk.js",
+    "static/js/2.4a227e4b.chunk.js.map": "/businessMaker/static/js/2.4a227e4b.chunk.js.map",
+    "index.html": "/businessMaker/index.html",
+    "precache-manifest.38d0d4fe96f53140444e0727a3a7bfa4.js": "/businessMaker/precache-manifest.38d0d4fe96f53140444e0727a3a7bfa4.js",
+    "service-worker.js": "/businessMaker/service-worker.js",
+    "static/css/main.a3eb300a.chunk.css.map": "/businessMaker/static/css/main.a3eb300a.chunk.css.map",
+    "static/js/2.4a227e4b.chunk.js.LICENSE.txt": "/businessMaker/static/js/2.4a227e4b.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.96cfa354.js",
+    "static/js/2.4a227e4b.chunk.js",
+    "static/css/main.a3eb300a.chunk.css",
+    "static/js/main.403797a1.chunk.js"
+  ]
+}
