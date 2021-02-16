@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "208f8f0b79865a4b9453ce52736a6ca4",
+    "revision": "3e6f63ddab64ec86a1f16c603a6fbea2",
     "url": "/businessMaker/index.html"
   },
   {
-    "revision": "05d6043de80e4b9cdf43",
+    "revision": "6a9027ce23dd2c719a16",
     "url": "/businessMaker/static/css/main.a3eb300a.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/businessMaker/static/js/2.517e59e2.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "05d6043de80e4b9cdf43",
-    "url": "/businessMaker/static/js/main.e37127b7.chunk.js"
+    "revision": "6a9027ce23dd2c719a16",
+    "url": "/businessMaker/static/js/main.78f83ea1.chunk.js"
   },
   {
     "revision": "c94eb9ece6313f58c9eb",
