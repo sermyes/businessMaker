@@ -14,7 +14,7 @@ function App({ FileInput, authService, cardRespository, noteRespository }) {
 
   return (
     <div className={styles.app}>
-      <BrowserRouter>
+      <BrowserRouter basename="/businessMaker">
         <Switch>
           <Route exact path="/">
             <Signin authService={authService} />

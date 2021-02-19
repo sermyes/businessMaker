@@ -10,7 +10,7 @@ const CardEditorForm = ({ FileInput, card, updateCard, deleteCard }) => {
   const phoneRef = useRef();
   const themeRef = useRef();
 
-  const { company, job, name, email, phone, theme } = card;
+  const { company, job, name, email, phone, theme, fileName } = card;
 
   const onFileChange = (file) => {
     updateCard({
@@ -99,7 +99,10 @@ const CardEditorForm = ({ FileInput, card, updateCard, deleteCard }) => {
         onChange={onChange}
       />
       <div className={styles.fileInput}>
-        <FileInput name={`${name}_logo`} onFileChange={onFileChange} />
+        <FileInput
+          name={fileName ? `${name}_logo` : ""}
+          onFileChange={onFileChange}
+        />
       </div>
       <CardButton name="Delete" onClick={onSubmit} />
     </form>

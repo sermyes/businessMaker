@@ -14,6 +14,12 @@ const Footer = memo((props) => {
         <a href="tel:010-6807-5339" className={styles.contact}>
           <i className={`${styles.icon} fas fa-phone-alt`}></i>
         </a>
+        <a
+          href="https://github.com/sermyes/businessMaker"
+          className={styles.contact}
+        >
+          <i className={`${styles.icon} fab fa-github`}></i>
+        </a>
       </div>
     </footer>
   );
