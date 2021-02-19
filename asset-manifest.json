@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/businessMaker/static/css/main.a3eb300a.chunk.css",
-    "main.js": "/businessMaker/static/js/main.78f83ea1.chunk.js",
-    "main.js.map": "/businessMaker/static/js/main.78f83ea1.chunk.js.map",
+    "main.js": "/businessMaker/static/js/main.7c723103.chunk.js",
+    "main.js.map": "/businessMaker/static/js/main.7c723103.chunk.js.map",
     "runtime-main.js": "/businessMaker/static/js/runtime-main.c71387fe.js",
     "runtime-main.js.map": "/businessMaker/static/js/runtime-main.c71387fe.js.map",
-    "static/js/2.517e59e2.chunk.js": "/businessMaker/static/js/2.517e59e2.chunk.js",
-    "static/js/2.517e59e2.chunk.js.map": "/businessMaker/static/js/2.517e59e2.chunk.js.map",
+    "static/js/2.5380e4d4.chunk.js": "/businessMaker/static/js/2.5380e4d4.chunk.js",
+    "static/js/2.5380e4d4.chunk.js.map": "/businessMaker/static/js/2.5380e4d4.chunk.js.map",
     "index.html": "/businessMaker/index.html",
-    "precache-manifest.92cd4f1fd2c8773269c4a63b0b485a58.js": "/businessMaker/precache-manifest.92cd4f1fd2c8773269c4a63b0b485a58.js",
+    "precache-manifest.625738cf61000353a47e3842e2b108a9.js": "/businessMaker/precache-manifest.625738cf61000353a47e3842e2b108a9.js",
     "service-worker.js": "/businessMaker/service-worker.js",
     "static/css/main.a3eb300a.chunk.css.map": "/businessMaker/static/css/main.a3eb300a.chunk.css.map",
-    "static/js/2.517e59e2.chunk.js.LICENSE.txt": "/businessMaker/static/js/2.517e59e2.chunk.js.LICENSE.txt"
+    "static/js/2.5380e4d4.chunk.js.LICENSE.txt": "/businessMaker/static/js/2.5380e4d4.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.c71387fe.js",
-    "static/js/2.517e59e2.chunk.js",
+    "static/js/2.5380e4d4.chunk.js",
     "static/css/main.a3eb300a.chunk.css",
-    "static/js/main.78f83ea1.chunk.js"
+    "static/js/main.7c723103.chunk.js"
   ]
 }
