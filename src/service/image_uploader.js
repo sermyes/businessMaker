@@ -5,7 +5,7 @@ class ImageUploader{
         data.append('upload_preset', 'qt5yvyaq');
         data.append("folder", "business-maker/user");
         const result = await fetch(
-            'https://api.cloudinary.com/v1_1/sermyes/upload',
+            `https://api.cloudinary.com/v1_1/sermyes/upload`,
             {
                 method: 'POST',
                 body: data,
