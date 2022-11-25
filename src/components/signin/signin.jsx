@@ -1,34 +1,32 @@
-import React, { useRef, useEffect, useState } from "react";
-import Footer from "../footer/footer";
-import Header from "../header/header";
-import styles from "./signin.module.css";
-import { FcGoogle as GoogleIcon } from "react-icons/fc";
-import { FaFacebookF as FacebookIcon } from "react-icons/fa";
-import { FiGithub as GithubIcon } from "react-icons/fi";
-import { useHistory } from "react-router-dom";
+import React, { useRef, useEffect, useState } from 'react';
+import Footer from '../footer/footer';
+import Header from '../header/header';
+import styles from './signin.module.css';
+import { FcGoogle as GoogleIcon } from 'react-icons/fc';
+import { FaFacebookF as FacebookIcon } from 'react-icons/fa';
+import { FiGithub as GithubIcon } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
 
 const Signin = ({ authService }) => {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const goToMain = (userId) => {
-    history.push({
-      pathname: "/cardMaker",
-      state: { id: userId },
-    });
+    navigate('/cardMaker', { state: { id: userId } });
   };
+
   const goToSignup = (e) => {
     e.preventDefault();
-    history.push("/signup");
+    navigate('/signup');
   };
 
   const goToForgot = (e) => {
     e.preventDefault();
-    history.push("/forgot");
+    navigate('/forgot');
   };
 
   const onRemoteSignin = (e) => {
@@ -82,42 +80,42 @@ const Signin = ({ authService }) => {
       <section className={styles.container}>
         <h1 className={styles.title}>Welcome Back!</h1>
         {error && <p className={styles.alert}>{error}</p>}
-        <form action="">
+        <form action=''>
           <fieldset className={styles.formContainer}>
             <div className={styles.formGroup}>
-              <label className={styles.label} htmlFor="email">
+              <label className={styles.label} htmlFor='email'>
                 Email
               </label>
               <input
                 className={styles.input}
-                type="email"
-                id="email"
-                placeholder="Email"
+                type='email'
+                id='email'
+                placeholder='Email'
                 required
                 ref={emailRef}
               />
             </div>
             <div className={styles.formGroup}>
-              <label className={styles.label} htmlFor="password">
+              <label className={styles.label} htmlFor='password'>
                 Password
               </label>
               <input
                 className={styles.input}
-                type="password"
-                id="password"
-                placeholder="Password"
+                type='password'
+                id='password'
+                placeholder='Password'
                 ref={passwordRef}
                 required
               />
             </div>
             <div className={styles.forgotContainer}>
-              <a href="!#" className={styles.forgot} onClick={goToForgot}>
+              <a href='!#' className={styles.forgot} onClick={goToForgot}>
                 Forgot your password?
               </a>
             </div>
             <div className={styles.formBtnGroup}>
               <button
-                type="submit"
+                type='submit'
                 className={styles.signin}
                 onClick={onSignin}
               >
@@ -136,9 +134,9 @@ const Signin = ({ authService }) => {
             <li className={styles.remoteItem}>
               <a
                 className={styles.google}
-                id="Google"
+                id='Google'
                 onClick={onRemoteSignin}
-                href="!#"
+                href='!#'
               >
                 <GoogleIcon className={styles.icon} />
               </a>
@@ -146,9 +144,9 @@ const Signin = ({ authService }) => {
             <li className={styles.remoteItem}>
               <a
                 className={styles.github}
-                id="Github"
+                id='Github'
                 onClick={onRemoteSignin}
-                href="!#"
+                href='!#'
               >
                 <GithubIcon className={styles.icon} />
               </a>
@@ -156,9 +154,9 @@ const Signin = ({ authService }) => {
             <li className={styles.remoteItem}>
               <a
                 className={styles.facebook}
-                id="Facebook"
+                id='Facebook'
                 onClick={onRemoteSignin}
-                href="!#"
+                href='!#'
               >
                 <FacebookIcon className={styles.icon} />
               </a>
@@ -167,7 +165,7 @@ const Signin = ({ authService }) => {
         </div>
 
         <div className={styles.signupContainer}>
-          <a className={styles.signup} href="!#" onClick={goToSignup}>
+          <a className={styles.signup} href='!#' onClick={goToSignup}>
             Crate a new account
           </a>
         </div>

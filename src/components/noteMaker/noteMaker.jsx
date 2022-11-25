@@ -1,30 +1,29 @@
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router";
-import Footer from "../footer/footer";
-import Header from "../header/header";
-import Note from "../note/note";
-import NoteAddButton from "../noteAddButton/noteAddButton";
-import NoteDetail from "../noteDetail/noteDetail";
-import NoteManager from "../noteManager/noteManager";
-import styles from "./noteMaker.module.css";
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router';
+import Footer from '../footer/footer';
+import Header from '../header/header';
+import Note from '../note/note';
+import NoteAddButton from '../noteAddButton/noteAddButton';
+import NoteDetail from '../noteDetail/noteDetail';
+import NoteManager from '../noteManager/noteManager';
+import styles from './noteMaker.module.css';
 
 const NoteMaker = ({ authService, onSignout, noteRespository }) => {
-  const history = useHistory();
-  const [userId, setUserId] = useState(
-    history.location.state && history.location.state.id
-  );
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [userId, setUserId] = useState(location.state && location.state.id);
   const [selectedNote, setSelectedNote] = useState(null);
   const [selectedManager, setSelectedManager] = useState(false);
 
   const [notes, setNotes] = useState({});
-  const [setting, setSetting] = useState({ color: "orange", size: "regular" });
+  const [setting, setSetting] = useState({ color: 'orange', size: 'regular' });
 
   const getDateFormat = (date) => {
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
     const day = date.getDate();
     let hour = date.getHours();
-    const str = hour > 12 ? "오후" : "오전";
+    const str = hour > 12 ? '오후' : '오전';
     hour = hour === 12 ? hour : hour % 12;
     hour = hour < 10 ? `0${hour}` : hour;
     let min = date.getMinutes();
@@ -43,11 +42,11 @@ const NoteMaker = ({ authService, onSignout, noteRespository }) => {
     const noteId = date.getTime();
     const newNote = {
       id: noteId,
-      title: "",
-      content: "",
+      title: '',
+      content: '',
       color: color,
       size: size,
-      updatedTime: getDateFormat(date),
+      updatedTime: getDateFormat(date)
     };
 
     setNotes((notes) => {
@@ -69,7 +68,7 @@ const NoteMaker = ({ authService, onSignout, noteRespository }) => {
   };
 
   const updateNote = (note) => {
-    note["updatedTime"] = getDateFormat(new Date());
+    note['updatedTime'] = getDateFormat(new Date());
 
     setNotes((notes) => {
       const updated = { ...notes };
@@ -92,10 +91,7 @@ const NoteMaker = ({ authService, onSignout, noteRespository }) => {
   };
 
   const goToCardMaker = () => {
-    history.push({
-      pathname: "/cardMaker",
-      state: { id: userId },
-    });
+    navigate('/cardMaker', { state: { id: userId } });
   };
 
   const onDetailClose = () => {
@@ -128,7 +124,7 @@ const NoteMaker = ({ authService, onSignout, noteRespository }) => {
       if (user) {
         setUserId(userId);
       } else {
-        history.push("/");
+        navigate('/');
       }
     });
   });

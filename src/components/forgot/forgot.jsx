@@ -1,18 +1,18 @@
-import React, { useState, useRef } from "react";
-import { useHistory } from "react-router-dom";
-import Footer from "../footer/footer";
-import Header from "../header/header";
-import styles from "./forgot.module.css";
+import React, { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Footer from '../footer/footer';
+import Header from '../header/header';
+import styles from './forgot.module.css';
 
 const Forgot = ({ authService }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const emailRef = useRef();
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
   const goToSignin = (e) => {
     e.preventDefault();
-    history.push("/");
+    navigate('/');
   };
 
   const onForgot = (e) => {
@@ -25,8 +25,8 @@ const Forgot = ({ authService }) => {
       .resetPassword(emailRef.current.value)
       .then(() => {
         setLoading(false);
-        window.alert("sent by your e-mail");
-        history.push("/");
+        window.alert('sent by your e-mail');
+        navigate('/');
       })
       .catch((e) => {
         setLoading(false);
@@ -44,28 +44,28 @@ const Forgot = ({ authService }) => {
           instructions.
         </p>
         {error && <p className={styles.alert}>{error}</p>}
-        <form action="">
+        <form action=''>
           <fieldset className={styles.formContainer}>
             <div className={styles.formGroup}>
-              <label className={styles.label} htmlFor="">
+              <label className={styles.label} htmlFor=''>
                 email
               </label>
               <input
                 className={styles.input}
-                type="email"
-                placeholder="email"
+                type='email'
+                placeholder='email'
                 ref={emailRef}
               />
             </div>
             <div className={styles.btnGroup}>
-              <button className={styles.btn} onClick={onForgot} type="submit">
+              <button className={styles.btn} onClick={onForgot} type='submit'>
                 Submit
               </button>
             </div>
           </fieldset>
         </form>
         <div className={styles.signinContainer}>
-          <a className={styles.signin} href="!#" onClick={goToSignin}>
+          <a className={styles.signin} href='!#' onClick={goToSignin}>
             I remembered the password!
           </a>
         </div>

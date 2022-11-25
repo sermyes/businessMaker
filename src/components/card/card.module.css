@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Yusei+Magic&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Yusei+Magic&display=swap');
 
 .container {
   display: block;
@@ -27,7 +27,7 @@
   backface-visibility: hidden;
 }
 .cardFront {
-  font-family: "Yusei Magic", sans-serif;
+  font-family: 'Yusei Magic', sans-serif;
   letter-spacing: 0.1em;
   justify-content: center;
   align-items: center;
@@ -35,7 +35,7 @@
   font-weight: bold;
 }
 .cardBack {
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
   transform: rotateY(180deg);
   border: 1px solid rgba(0, 0, 0, 0.2);
 }
@@ -59,7 +59,7 @@
   width: 50px;
 }
 .info:after {
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   height: 60%;
@@ -68,8 +68,7 @@
   right: 0;
   background-color: rgba(0, 0, 0, 0.3);
 }
-.logoContainer {
-}
+
 .name {
   font-size: 24px;
   margin-bottom: 10px;
@@ -130,7 +129,7 @@
   color: #000;
 }
 .cardFront.pattern_blue {
-  background: url("https://res.cloudinary.com/sermyes/image/upload/v1612458550/business-maker/basic/pattern_blue_jtmtbq.png");
+  background: url('https://res.cloudinary.com/sermyes/image/upload/v1612458550/business-maker/basic/pattern_blue_jtmtbq.png');
   color: #000;
 }
 .cardBack.pattern_blue {
@@ -143,7 +142,7 @@
   line-height: 24px;
 }
 .cardFront.pattern_yellow {
-  background: url("https://res.cloudinary.com/sermyes/image/upload/v1612456769/business-maker/basic/pattern_yellow_crpzbm.png");
+  background: url('https://res.cloudinary.com/sermyes/image/upload/v1612456769/business-maker/basic/pattern_yellow_crpzbm.png');
   color: #000;
 }
 .cardBack.pattern_yellow {
@@ -156,9 +155,9 @@
   line-height: 24px;
 }
 .cardFront.vintage {
-  background: url("https://res.cloudinary.com/sermyes/image/upload/v1612456769/business-maker/basic/vintage_black_wixun5.png");
+  background: url('https://res.cloudinary.com/sermyes/image/upload/v1612456769/business-maker/basic/vintage_black_wixun5.png');
   color: #fff;
 }
 .cardBack.vintage {
-  background: url("https://res.cloudinary.com/sermyes/image/upload/v1612456769/business-maker/basic/vintage_white_nfn7il.png");
+  background: url('https://res.cloudinary.com/sermyes/image/upload/v1612456769/business-maker/basic/vintage_white_nfn7il.png');
 }

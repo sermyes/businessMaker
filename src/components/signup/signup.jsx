@@ -1,20 +1,20 @@
-import React, { useRef, useState } from "react";
-import { useHistory } from "react-router-dom";
-import Footer from "../footer/footer";
-import Header from "../header/header";
-import styles from "./signup.module.css";
+import React, { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Footer from '../footer/footer';
+import Header from '../header/header';
+import styles from './signup.module.css';
 
 const Signup = ({ authService }) => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
-  const history = useHistory();
-  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
   const goToSignin = (e) => {
     e.preventDefault();
-    history.push("/");
+    navigate('/');
   };
 
   const onSignup = (e) => {
@@ -25,10 +25,10 @@ const Signup = ({ authService }) => {
     }
 
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      return setError("Passwords do not match.");
+      return setError('Passwords do not match.');
     }
 
-    setError("");
+    setError('');
     setLoading(true);
     authService
       .signup(emailRef.current.value, passwordRef.current.value)
@@ -44,50 +44,50 @@ const Signup = ({ authService }) => {
       <section className={styles.container}>
         <h2 className={styles.title}>Create a new account</h2>
         {error && <p className={styles.alert}>{error}</p>}
-        <form action="">
+        <form action=''>
           <fieldset className={styles.formContainer}>
             <div className={styles.formGroup}>
-              <label className={styles.label} htmlFor="email">
+              <label className={styles.label} htmlFor='email'>
                 Email
               </label>
               <input
                 className={styles.input}
-                type="email"
-                id="email"
-                placeholder="Email"
+                type='email'
+                id='email'
+                placeholder='Email'
                 required
                 ref={emailRef}
               />
             </div>
             <div className={styles.formGroup}>
-              <label className={styles.label} htmlFor="password">
+              <label className={styles.label} htmlFor='password'>
                 Password
               </label>
               <input
                 className={styles.input}
-                type="password"
-                id="password"
-                placeholder="Password"
+                type='password'
+                id='password'
+                placeholder='Password'
                 required
                 ref={passwordRef}
               />
             </div>
             <div className={styles.formGroup}>
-              <label className={styles.label} htmlFor="passwordConfirm">
+              <label className={styles.label} htmlFor='passwordConfirm'>
                 Password Confirmation
               </label>
               <input
                 className={styles.input}
-                type="password"
-                id="passwordConfirm"
-                placeholder="Password"
+                type='password'
+                id='passwordConfirm'
+                placeholder='Password'
                 required
                 ref={passwordConfirmRef}
               />
             </div>
             <div className={styles.formBtnGroup}>
               <button
-                type="submit"
+                type='submit'
                 className={styles.signup}
                 onClick={onSignup}
               >
@@ -97,7 +97,7 @@ const Signup = ({ authService }) => {
           </fieldset>
         </form>
         <div className={styles.signinContainer}>
-          <a className={styles.signin} href="!#" onClick={goToSignin}>
+          <a className={styles.signin} href='!#' onClick={goToSignin}>
             I already have an account!
           </a>
         </div>

@@ -1,13 +1,13 @@
-import React, { memo } from "react";
-import { useHistory } from "react-router-dom";
-import styles from "./header.module.css";
+import React, { memo } from 'react';
+import { useLocation } from 'react-router-dom';
+import styles from './header.module.css';
 
 const NavMenu = memo(({ goToNoteMaker, goToCardMaker }) => {
-  const history = useHistory();
+  const location = useLocation();
 
   const onCardMakerClick = (e) => {
     e.preventDefault();
-    if (history.location.pathname === "/cardMaker") {
+    if (location.pathname === '/cardMaker') {
       return;
     }
 
@@ -16,7 +16,7 @@ const NavMenu = memo(({ goToNoteMaker, goToCardMaker }) => {
 
   const onNoteMakerClick = (e) => {
     e.preventDefault();
-    if (history.location.pathname === "/noteMaker") {
+    if (location.pathname === '/noteMaker') {
       return;
     }
 
@@ -27,12 +27,12 @@ const NavMenu = memo(({ goToNoteMaker, goToCardMaker }) => {
     <nav className={styles.nav}>
       <ul className={styles.ul}>
         <li className={styles.li}>
-          <a className={styles.cardMaker} href="!#" onClick={onCardMakerClick}>
+          <a className={styles.cardMaker} href='!#' onClick={onCardMakerClick}>
             <i className={`${styles.icon} far fa-id-card`}></i>
           </a>
         </li>
         <li className={styles.li}>
-          <a className={styles.noteMaker} href="!#" onClick={onNoteMakerClick}>
+          <a className={styles.noteMaker} href='!#' onClick={onNoteMakerClick}>
             <i className={`${styles.icon} far fa-sticky-note`}></i>
           </a>
         </li>
@@ -49,7 +49,7 @@ const Header = memo(({ onSignout, goToNoteMaker, goToCardMaker }) => {
           <img
             className={styles.logo}
             src={`${process.env.PUBLIC_URL}/images/logo.png`}
-            alt="logo"
+            alt='logo'
           />
           <h1 className={styles.title}>Business Management</h1>
         </div>
@@ -60,7 +60,7 @@ const Header = memo(({ onSignout, goToNoteMaker, goToCardMaker }) => {
             <img
               className={styles.logo}
               src={`${process.env.PUBLIC_URL}/images/logo.png`}
-              alt="logo"
+              alt='logo'
             />
             <h1 className={styles.title}>Business Management</h1>
           </div>
