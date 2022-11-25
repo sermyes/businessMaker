@@ -1,27 +1,31 @@
-import { firebaseDatabase } from './firebase';
+import { getDatabase, ref, set, remove, onValue, off } from 'firebase/database';
 
-class NoteRespository{
-    saveNote(userId, note){
-        firebaseDatabase.ref(`${userId}/noteApp/notes/${note.id}`).set(note);
-    }
+class NoteRespository {
+  constructor() {
+    this.database = getDatabase();
+  }
 
-    saveNoteSetting(userId, setting){
-        firebaseDatabase.ref(`${userId}/noteApp/setting`).set(setting);
-    }
+  saveNote(userId, note) {
+    set(ref(this.database, `${userId}/noteApp/notes/${note.id}`), note);
+  }
 
-    removeNote(userId, note){
-        firebaseDatabase.ref(`${userId}/noteApp/notes/${note.id}`).remove();
-    }
+  saveNoteSetting(userId, setting) {
+    set(ref(this.database, `${userId}/noteApp/setting`), setting);
+  }
 
-    syncNote(userId, onUpdate){
-        const ref = firebaseDatabase.ref(`${userId}/noteApp`);
-        ref.on('value', (snapshot) => {
-            const data = snapshot.val();
-            data && onUpdate(data);
-        });
+  removeNote(userId, note) {
+    remove(ref(this.database, `${userId}/noteApp/notes/${note.id}`));
+  }
 
-        return () => ref.off();
-    }
+  syncNote(userId, onUpdate) {
+    const query = ref(this.database, `${userId}/noteApp`);
+    onValue(query, snapshot => {
+      const value = snapshot.val();
+      value && onUpdate(value);
+    });
+
+    return () => off(query);
+  }
 }
 
 export default NoteRespository;

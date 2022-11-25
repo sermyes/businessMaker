@@ -1,45 +1,63 @@
-import { firebaseAuth, googleProvider, githubProvider, facebookProvider } from './firebase';
+import {
+  getAuth,
+  signInWithPopup,
+  GithubAuthProvider,
+  onAuthStateChanged,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+  signOut,
+  FacebookAuthProvider,
+  GoogleAuthProvider
+} from 'firebase/auth';
 
-class AuthService{
-    signup(email, password){
-        return firebaseAuth.createUserWithEmailAndPassword(email, password);
-    }
-    
-    signin(email, password){
-        return firebaseAuth.signInWithEmailAndPassword(email, password);
-    }
+class AuthService {
+  constructor() {
+    this.firebaseAuth = getAuth();
+    this.googleAuthProvider = new GoogleAuthProvider();
+    this.githubAuthProvider = new GithubAuthProvider();
+    this.facebookProvider = new FacebookAuthProvider();
+  }
 
-    remoteSignin(providerName) {
-        const authProvider = this.getProvider(providerName);
-        return firebaseAuth.signInWithPopup(authProvider);
-    }
+  signup(email, password) {
+    return createUserWithEmailAndPassword(this.firebaseAuth, email, password);
+  }
 
-    onAuthChange(onUserChanged) {
-        firebaseAuth.onAuthStateChanged(user => {
-            onUserChanged(user);
-        });
-    }
+  signin(email, password) {
+    return signInWithEmailAndPassword(this.firebaseAuth, email, password);
+  }
 
-    signout(){
-        firebaseAuth.signOut();
-    }
+  remoteSignin(providerName) {
+    const authProvider = this.getProvider(providerName);
+    return signInWithPopup(this.firebaseAuth, authProvider);
+  }
 
-    resetPassword(email){
-        return firebaseAuth.sendPasswordResetEmail(email);
-    }
+  onAuthChange(onUserChanged) {
+    onAuthStateChanged(this.firebaseAuth, user => {
+      onUserChanged(user);
+    });
+  }
 
-    getProvider(providerName){
-        switch(providerName){
-            case 'Google' :
-                return googleProvider;
-            case 'Github' :
-                return githubProvider;
-            case 'Facebook' :
-                return facebookProvider;
-            default: 
-                throw new Error(`not supported provider ${providerName}`);
-        }
+  resetPassword(email) {
+    return sendPasswordResetEmail(this.firebaseAuth, email);
+  }
+
+  signout() {
+    signOut(this.firebaseAuth);
+  }
+
+  getProvider(providerName) {
+    switch (providerName) {
+      case 'Google':
+        return this.googleProvider;
+      case 'Github':
+        return this.githubProvider;
+      case 'Facebook':
+        return this.facebookProvider;
+      default:
+        throw new Error(`not supported provider ${providerName}`);
     }
+  }
 }
 
 export default AuthService;

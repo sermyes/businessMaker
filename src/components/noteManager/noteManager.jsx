@@ -1,9 +1,9 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import NoteModal from "../noteModal/noteModal";
-import NoteAddButton from "../noteAddButton/noteAddButton";
-import NoteColor from "../noteColor/noteColor";
-import NoteSubject from "../noteSubject/noteSubject";
-import styles from "./noteManager.module.css";
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import NoteModal from '../noteModal/noteModal';
+import NoteAddButton from '../noteAddButton/noteAddButton';
+import NoteColor from '../noteColor/noteColor';
+import NoteSubject from '../noteSubject/noteSubject';
+import styles from './noteManager.module.css';
 
 const NoteManager = ({
   onClose,
@@ -11,7 +11,7 @@ const NoteManager = ({
   addNote,
   setSelectedNote,
   updateSetting,
-  setting,
+  setting
 }) => {
   const { color, size } = setting;
   const sortRef = useRef();
@@ -21,12 +21,12 @@ const NoteManager = ({
   const [sortedNotes, setSortedNotes] = useState([]);
 
   const onColorChange = (eventTarget) => {
-    const name = eventTarget.getAttribute("name");
-    const color = eventTarget.getAttribute("data-color");
+    const name = eventTarget.getAttribute('name');
+    const color = eventTarget.getAttribute('data-color');
 
     updateSetting({
       ...setting,
-      [name]: color,
+      [name]: color
     });
   };
 
@@ -34,7 +34,7 @@ const NoteManager = ({
     e.preventDefault();
     updateSetting({
       ...setting,
-      [e.currentTarget.name]: e.currentTarget.value,
+      [e.currentTarget.name]: e.currentTarget.value
     });
   };
 
@@ -49,25 +49,39 @@ const NoteManager = ({
       setActive(true);
     }
   };
-
-  const search = (e) => {
-    if (searchInputRef.current.value === "") {
+  const onKeyUp = (e) => {
+    if (!(e.key === 'Enter')) {
       return;
     }
     e.preventDefault();
-    const str = searchInputRef.current.value;
+    handleSearch();
+  };
 
-    setSortedNotes((notes) => {
-      const sorted = notes.filter(
-        (note) =>
-          note.title.indexOf(str) !== -1 || note.content.indexOf(str) !== -1
-      );
-      return sorted;
-    });
+  const onClick = (e) => {
+    e.preventDefault();
+    handleSearch();
+  };
+
+  const handleSearch = () => {
+    if (searchInputRef.current.value === '') {
+      setSortedNotes(Object.values(notes));
+    } else {
+      const str = searchInputRef.current.value;
+
+      setSortedNotes((notes) => {
+        const sorted = notes.filter(
+          (note) =>
+            note.title.indexOf(str) !== -1 || note.content.indexOf(str) !== -1
+        );
+        return sorted;
+      });
+    }
+
+    searchInputRef.current.value = '';
   };
 
   const sortNotes = useCallback(() => {
-    if (sortRef.current.value === "title") {
+    if (sortRef.current.value === 'title') {
       setSortedNotes(
         Object.values(notes).sort((a, b) => (a.title > b.title ? 1 : -1))
       );
@@ -106,12 +120,13 @@ const NoteManager = ({
         <div ref={searchRef} className={styles.searchContainer}>
           <div className={styles.searchBar}>
             <input
-              type="text"
+              type='text'
               className={styles.searchText}
               ref={searchInputRef}
-              name="search"
+              name='search'
+              onKeyUp={onKeyUp}
             />
-            <button className={styles.searchBtn} onClick={search}>
+            <button className={styles.searchBtn} onClick={onClick}>
               <i className={`${styles.searchIcon} fas fa-search`}></i>
             </button>
           </div>
@@ -125,13 +140,13 @@ const NoteManager = ({
               <span className={styles.fontTitle}>font-size </span>
               <select
                 className={styles.fontSize}
-                name="size"
+                name='size'
                 defaultValue={size}
                 onChange={onChange}
               >
-                <option value="small">small</option>
-                <option value="regular">regular</option>
-                <option value="big">big</option>
+                <option value='small'>small</option>
+                <option value='regular'>regular</option>
+                <option value='big'>big</option>
               </select>
             </div>
             <div className={styles.colorContainer}>
@@ -147,11 +162,11 @@ const NoteManager = ({
             <select
               ref={sortRef}
               className={styles.sort}
-              defaultValue="updated"
+              defaultValue='updated'
               onChange={onSortChange}
             >
-              <option value="updated">Sort by Updated Time</option>
-              <option value="title">Sort by Title</option>
+              <option value='updated'>Sort by Updated Time</option>
+              <option value='title'>Sort by Title</option>
             </select>
           </div>
         </div>

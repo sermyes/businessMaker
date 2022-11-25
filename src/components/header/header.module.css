@@ -47,12 +47,16 @@
 .signout {
   min-width: 100px;
   padding: 12px;
-  border-radius: 15%;
-  background-color: #000;
+  border-radius: 5%;
+  background-color: #00000080;
   color: #fff;
   outline: 0;
   border: 0;
   cursor: pointer;
+  transition: background-color 100ms ease-in;
+}
+.signout:hover {
+  background-color: #000000;
 }
 .nav {
   display: block;
