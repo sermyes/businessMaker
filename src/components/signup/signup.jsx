@@ -34,7 +34,7 @@ const Signup = ({ authService }) => {
       .signup(emailRef.current.value, passwordRef.current.value)
       .catch((e) => {
         setLoading(false);
-        setError(e.message);
+        setError(e.message.replace(/Firebase:/, ''));
       });
   };
 
@@ -68,6 +68,7 @@ const Signup = ({ authService }) => {
                 type='password'
                 id='password'
                 placeholder='Password'
+                autoComplete='on'
                 required
                 ref={passwordRef}
               />
@@ -81,6 +82,7 @@ const Signup = ({ authService }) => {
                 type='password'
                 id='passwordConfirm'
                 placeholder='Password'
+                autoComplete='on'
                 required
                 ref={passwordConfirmRef}
               />

@@ -58,9 +58,9 @@ const Signin = ({ authService }) => {
         setLoading(false);
         goToMain(data.user.uid);
       })
-      .catch((e) => {
+      .catch(() => {
         setLoading(false);
-        setError(e.message);
+        setError('Email or Passwod do not match!');
       });
   };
 
@@ -104,6 +104,7 @@ const Signin = ({ authService }) => {
                 type='password'
                 id='password'
                 placeholder='Password'
+                autoComplete='on'
                 ref={passwordRef}
                 required
               />

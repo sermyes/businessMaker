@@ -21,17 +21,21 @@ const Forgot = ({ authService }) => {
       return;
     }
     setLoading(true);
-    authService
-      .resetPassword(emailRef.current.value)
-      .then(() => {
-        setLoading(false);
-        window.alert('sent by your e-mail');
-        navigate('/');
-      })
-      .catch((e) => {
-        setLoading(false);
-        setError(e.message);
-      });
+    if (emailRef.current.value === '') {
+      setError('Please, Enter your email');
+    } else {
+      authService
+        .resetPassword(emailRef.current.value)
+        .then((_) => {
+          setLoading(false);
+          window.alert('sent by your e-mail');
+          navigate('/');
+        })
+        .catch((_) => {
+          setLoading(false);
+          setError(`your email can't found!`);
+        });
+    }
   };
 
   return (
