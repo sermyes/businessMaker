@@ -99,8 +99,8 @@ const NoteManager = ({
   };
 
   useEffect(() => {
-    sortNotes();
-  }, [sortNotes]);
+    notes && sortNotes();
+  }, [sortNotes, notes]);
 
   return (
     <NoteModal>
